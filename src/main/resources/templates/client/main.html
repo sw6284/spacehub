@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" class="h-100"
+	data-bs-theme="auto">
+<head>
+<th:block th:insert="~{template/client/fragments/block :: config}"></th:block>
+<meta name="theme-color" content="#712cf9">
+<link href="/css/cover.css" rel="stylesheet">
+<link rel="canonical"
+	href="https://getbootstrap.kr/docs/5.3/examples/cover/">
+</head>
+<body class="d-flex h-100 text-center text-bg-dark">
+	<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+		<div
+			class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+
+
+			<!-- header -->
+			<th:block th:insert="~{template/client/fragments/block :: header}"></th:block>
+
+			<div>
+				<button class="payment-button" data-method="kakao">카카오</button>
+				<button class="payment-button" data-method="toss">토스페이</button>
+				<button class="payment-button" data-method="basic">일반결제</button>
+				<button class="payment-button" data-method="mobile">휴대폰
+					소액결제</button>
+				<button class="test-btn" data-method="mobile">결제정보 전송테스트</button>
+			</div>
+
+		</div>
+
+	</div>
+	<script src="assets/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://cdn.portone.io/v2/browser-sdk.js"></script>
+	<script src="/js/jquery-3.7.1.min.js"></script>
+	<script src="/js/common.js"></script>
+	<script>
+	$(document).ready(function() {
+	    $('.payment-button').click(async function() {
+	        var paymentMethod = $(this).data('method');
+	        console.log("Selected payment method: " + paymentMethod);
+
+	        // 기본값 설정
+	        let channelKey = "";
+	        let payMethod = "";
+
+	        // 결제 방법에 따라 키 값 설정
+	        if(paymentMethod === "kakao") {
+	            channelKey = "channel-key-1972b134-d930-4897-9599-f805035dac66";
+	            payMethod = "EASY_PAY";
+	        } else if (paymentMethod === "toss") {
+	            channelKey = "channel-key-31017ccc-371d-440c-b9e4-459bc3323d14"; // 실제 토스 채널 키로 변경
+	            payMethod = "EASY_PAY";
+	        } else if (paymentMethod === "basic") {
+	            channelKey = "channel-key-f20734f6-5df3-406f-8d66-56a0ffa0aa1f"; // 실제 일반 결제 채널 키로 변경
+	            payMethod = "CARD";
+	        } else if (paymentMethod === "mobile") {
+	            channelKey = "channel-key-f20734f6-5df3-406f-8d66-56a0ffa0aa1f"; // 실제 일반 결제 채널 키로 변경
+	            payMethod = "MOBILE";
+	        }
+
+	        try {
+	            const paymentId = `pay-${crypto.randomUUID().substring(0, 20)}`; // 주문 번호를 40자 이하로 제한
+
+	            const requestOptions = {
+	                storeId: "store-6fcc723b-ff52-4915-9fdd-d5bc06e8c273",
+	                channelKey: channelKey,
+	                paymentId: paymentId,
+	                orderName: "1번방",
+	                totalAmount: 100000,
+	                currency: "KRW",
+	                payMethod: payMethod,
+	                
+	            };
+
+	            // 결제 방법이 모바일일 경우 추가 옵션 설정
+	            if(paymentMethod === "mobile"){
+	                requestOptions.bypass = {
+	                    "kcp_v2": {
+	                        "site_logo": "https://portone.io/assets/portone.jpg",
+	                        "skin_indx": 6,
+	                        "shop_user_id": "user_id1",
+	                        "site_name": "모바일 결제"
+	                    }
+	                };
+	            }
+
+	            // 결제 요청 함수 호출
+	            const response = await PortOne.requestPayment(requestOptions);
+
+	            if (response.code != null) {
+	                // 오류 발생 시 처리
+	                return alert(response.message);
+	            }
+
+	            // 결제가 성공하면 서버로 결제 완료 정보 전송
+	            const SERVER_BASE_URL = "http://localhost:8080";
+	            const notified = await fetch(`${SERVER_BASE_URL}/payment/completeCheck`, {
+	                method: "POST",
+	                headers: { "Content-Type": "application/json" },
+	                body: JSON.stringify({
+	                    paymentId: paymentId,
+	                    orderName: requestOption.orderName,
+	                    totalAmount: requestOption.totalAmount,
+	                    currency: "KRW",
+	                    payMethod: payMethod,
+	                    r_no: 12,
+	                }),
+	            });
+
+	            if (notified.ok) {
+	                // 결제 성공 시 페이지 이동
+	                window.location.href = "/payment/complete";  // 결제 성공 페이지로 이동
+	            } else {
+	                alert("서버에 결제 완료 정보를 알리는 데 실패했습니다.");
+	            }
+
+	        } catch (error) {
+	            console.error("결제 요청 중 오류가 발생했습니다:", error);
+	            alert("결제 요청 중 오류가 발생했습니다.");
+	        }
+	    });
+
+	    // 결제 전송 테스트 버튼 클릭 시
+	    $('.test-btn').click(async function() {
+	        try {
+	            const paymentId = `test-pay-${crypto.randomUUID().substring(0, 20)}`; // 테스트용 주문 번호
+
+	            // 테스트용 결제 정보
+	            const testRequestOptions = {
+	                paymentId: paymentId,
+	                orderName: "테스트 결제",
+	                totalAmount: 1000, // 테스트 금액
+	                currency: "KRW",
+	                payMethod: "TEST", // 테스트용 결제 방법
+	            };
+
+	            // 서버로 결제 완료 정보 전송 (결제 페이지만 제외하고)
+	            const SERVER_BASE_URL = "http://localhost:8080";
+	            const notified = await fetch(`${SERVER_BASE_URL}/payment/completeCheck`, {
+	                method: "POST",
+	                headers: { "Content-Type": "application/json" },
+	                body: JSON.stringify(testRequestOptions),
+	            });
+
+	            if (notified.ok) {
+	                // 테스트 결제 정보 전송 성공 시 페이지 이동
+	                //window.location.href = "/payment/complete";  // 테스트 성공 페이지로 이동
+	            } else {
+	                alert("서버에 결제 완료 정보를 알리는 데 실패했습니다.");
+	            }
+
+	        } catch (error) {
+	            console.error("Test payment info 전송 중 오류가 발생했습니다:", error);
+	            alert("Test payment info 전송 중 오류가 발생했습니다.");
+	        }
+	    });
+	});
+
+	</script>
+</body>
+</html>
+
+
+

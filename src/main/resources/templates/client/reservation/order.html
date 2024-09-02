@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" class="h-100"
+	data-bs-theme="auto">
+<head>
+<th:block th:insert="~{template/client/fragments/block :: config}"></th:block>
+<meta name="theme-color" content="#712cf9">
+<link href="/css/cover.css" rel="stylesheet">
+<link rel="canonical"
+	href="https://getbootstrap.kr/docs/5.3/examples/cover/">
+</head>
+<body class="d-flex h-100 text-center text-bg-dark">
+	<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+
+
+		<!-- header -->
+		<th:block th:insert="~{template/client/fragments/block :: header}"></th:block>
+		
+			
+
+		<!-- footer -->
+		<th:block th:insert="~{template/client/fragments/block :: footer}"></th:block>
+	</div>
+	<script src="assets/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="/js/jquery-3.7.1.min.js"></script>
+	<script src="/js/common.js"></script>
