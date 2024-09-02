@@ -1,0 +1,52 @@
+/* 페이지 전체를 고정된 크기로 설정 */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 1200px; /* PC 화면에서 고정된 너비 */
+    height: 800px; /* PC 화면에서 고정된 높이 */
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+header, footer {
+    width: 100%;
+    height: 50px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    line-height: 50px;
+}
+
+main {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background-color: #f4f4f4;
+}
+
+/* 반응형 디자인: 모바일 기기용 */
+@media only screen and (max-width: 768px) {
+    .container {
+        width: 100%; /* 모바일 화면에서 전체 너비로 변경 */
+        height: 100%; /* 모바일 화면에서 전체 높이로 변경 */
+    }
+
+    main {
+        padding: 10px; /* 패딩을 줄여서 모바일에 적합하게 조정 */
+        overflow-y: visible; /* 스크롤은 자동으로 하도록 설정 */
+    }
+
+    header, footer {
+        height: 40px; /* 헤더와 푸터의 높이를 줄임 */
+        line-height: 40px;
+    }
+}

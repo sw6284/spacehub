@@ -10,5 +10,12 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PaymentRequest {
-
+	
+	
+	private String paymentId;
+	private String tid;
+	private String orderName;
+	private int totalAmount;
+	private String payMethod;
+	private Long res_no;
 }

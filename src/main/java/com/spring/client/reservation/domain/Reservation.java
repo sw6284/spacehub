@@ -36,7 +36,7 @@ public class Reservation {
 
     @ManyToOne
     @JoinColumn(name = "member_no", nullable = false)
-    private Member memberNo;
+    private Member member;
 
     @ManyToOne
     @JoinColumn(name = "sp_no", nullable = false)
@@ -74,5 +74,7 @@ public class Reservation {
     @Column(name = "r_update_at")
     private LocalDateTime resUpdateAt;
     
-  
+    public Member getMember() {
+        return member;
+    }
 }

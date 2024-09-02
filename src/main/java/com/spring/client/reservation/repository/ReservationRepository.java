@@ -12,7 +12,7 @@ import com.spring.client.reservation.domain.Reservation;
 
 public interface ReservationRepository extends JpaRepository<Reservation, Long>{
 
-    Reservation findBymemberNo(Member memberNo);
+    Reservation findBymember(Member memberNo);
     Reservation findByresRequest(String resRequest);
     Reservation findByresState(String resState);
     Reservation findByresNo(Long resNo);
