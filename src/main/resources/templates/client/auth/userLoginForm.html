@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" class="h-100" data-bs-theme="auto">
+<head>
+    <th:block th:insert="~{template/client/fragments/block :: config}"></th:block>
+    <meta name="theme-color" content="#712cf9">
+    <title>SpaceHub</title>
+    <link href="/css/client/main.css" rel="stylesheet">
+    <link rel="canonical" href="https://getbootstrap.kr/docs/5.3/examples/cover/">
+    <link rel="stylesheet" href="/css/client/auth/userLoginForm.css">
+</head>
+<body class="d-flex flex-column h-100">
+    <header th:insert="~{template/client/fragments/block :: header}"></header>
+    <main class="flex-shrink-0 mt-5">
+	    <div class="d-flex justify-content-center">
+	        <div class="container-login">
+	            <div class="login-container">
+                    <img src="/images/login_image.jpg" alt="Login Image">
+                </div>
+                <div class="login-form">
+                    <h2>안녕하세요<br>SpaceHub 입니다</h2>
+                    <form id="loginForm">
+                        <input type="text" id="userId" name="userId" placeholder="아이디" required>
+                        <br>
+                        <input type="password" id="userPasswd" name="userPasswd" placeholder="비밀번호" required>
+                        <br>
+                        <div class="link-container">
+                            <button type="button" class="link-button" id="signupBtn" th:data-url="@{/auth/signupForm}">회원가입</button>
+                            <button type="button" class="link-button" id="findIdBtn" th:data-url="@{/auth/findIdForm}">아이디/비밀번호 찾기</button>
+                        </div>
+                        <button type="button" class="login-btn" id="login-btn">로그인</button>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer th:insert="~{template/client/fragments/block :: footer}" class="mt-auto"></footer>
+
+    <script src="/js/jquery-3.7.1.min.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="/js/client/auth/userLoginForm.js"></script>
+</body>
+</html>

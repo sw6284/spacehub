@@ -1,0 +1,45 @@
+
+.nav-container {
+    width: 250px;
+    background-color: #343a40;
+    color: #ffffff;
+    height: 100vh;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.sidebar h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.sidebar ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+.sidebar ul li a:hover {
+    text-decoration: underline;
+}
+
+.sidebar .divider {
+    border-top: 1px solid #ddd; /* 구분선 색상 및 두께 조정 */
+    margin: 20px 0; /* 구분선 위와 아래 여백 조정 */
+}
+

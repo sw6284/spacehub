@@ -42,7 +42,7 @@ public class Review {
     @ManyToOne
     @JoinColumn(name = "member_no", nullable = false)
     private Member member;
-
+   
     @ManyToOne
     @JoinColumn(name = "r_no", nullable = false)
     private Reservation reservation;

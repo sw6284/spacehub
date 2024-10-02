@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <th:block th:fragment="content">
+        <!-- 리뷰 목록 및 폼 -->
+        <form id="reviewForm" method="post">
+            <input type="hidden" name="spaceId" id="spaceId" th:value="${space.spNo}" /> 
+            <input type="hidden" name="id" id="id" value="0" />
+            <input type="hidden" name="memberId" id="memberId" value="${review.member}" />
+            <input type="hidden" name="resNo" id="resNo" value="${review.resNo}" /> <!-- resNo 숨겨진 필드 추가 -->
+            <div class="row mb-3">
+                <label for="member" class="col-sm-1 col-form-label">작성자</label>
+                <div class="col-sm-3">
+                    <input type="text" name="member" id="member" maxlength="20" class="form-control" readonly />
+                </div>
+                <button type="button" id="reviewInsertBtn" class="btn btn-second col-sm-1 sendBtn mx-2">저장</button>
+            </div>
+            <div class="row mb-3">
+                <label for="revContent" class="col-sm-1 col-form-label">리뷰 내용</label>
+                <div class="col-sm-11">
+                    <textarea name="revContent" id="revContent" class="form-control" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="revScore" class="col-sm-1 col-form-label">평점</label>
+                <div class="col-sm-11">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="revScore" id="score1" value="1">
+                        <label class="form-check-label" for="score1">1</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="revScore" id="score2" value="2">
+                        <label class="form-check-label" for="score2">2</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="revScore" id="score3" value="3">
+                        <label class="form-check-label" for="score3">3</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="revScore" id="score4" value="4">
+                        <label class="form-check-label" for="score4">4</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="revScore" id="score5" value="5">
+                        <label class="form-check-label" for="score5">5</label>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div id="reviewList">
+            <div id="item-template" class="card mb-3" style="display: none;" data-id="${review.id}">
+                <div class="card-header">
+                    <span class="name"></span>
+                    <span class="score"></span> <!-- 평점 표시 -->
+                    <span class="cdate float-right"></span>
+                </div>
+                <div class="card-body">
+                    <p class="card-text"></p>
+                    <button class="btn btn-danger reviewDeleteBtn">삭제</button>
+                    <button class="btn btn-secondary replyToggleBtn admin-only">답글</button> <!-- admin-only 클래스 추가 -->
+                    <!-- 대댓글 입력 폼 -->
+                    <form class="replyForm mt-3 admin-only" style="display: none;"> <!-- admin-only 클래스 추가 -->
+                        <div class="row mb-3">
+                            <label for="replyMember" class="col-sm-1 col-form-label">작성자</label>
+                            <div class="col-sm-3">
+                                <input type="text" name="replyMember" class="replyMember form-control" maxlength="20" value="admin" readonly />
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="replyContent" class="col-sm-1 col-form-label">내용</label>
+                            <div class="col-sm-11">
+                                <textarea name="replyContent" class="replyContent form-control" rows="2"></textarea>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-secondary replyInsertBtn">답글 저장</button>
+                    </form>
+                    <!-- 대댓글 목록 -->
+                    <div class="replyList mt-3"></div>
+                </div>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <script src="/js/client/review/reviewControl.js"></script>
+     
+    </th:block>
+</body>
+</html>
+

@@ -17,5 +17,10 @@ public class PaymentRequest {
 	private String orderName;
 	private int totalAmount;
 	private String payMethod;
-	private Long res_no;
+	private Long resNo;
+	private String resName;
+	private String resPhone;
+	private String resRequest;
+	private String reason;
+	
 }

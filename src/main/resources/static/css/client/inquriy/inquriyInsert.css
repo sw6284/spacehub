@@ -1,0 +1,21 @@
+
+.header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+}
+.header .form-group {
+    flex: 1 1 20%;
+    min-width: 150px;
+}
+.header .form-group input[type="text"],
+.header .form-group select,
+.header .form-group input[type="password"],
+.header .form-group textarea {
+    width: 100%;
+    box-sizing: border-box;
+}
+#passwordSection, #passwordButtonSection {
+    display: none; /* 초기에는 숨김 */
+}

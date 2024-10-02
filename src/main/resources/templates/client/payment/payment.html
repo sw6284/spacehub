@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" class="h-100"
+	data-bs-theme="auto">
+<head>
+<th:block th:insert="~{template/client/fragments/block :: config}"></th:block>
+<meta name="theme-color" content="#712cf9">
+<link href="/css/client/payment/payment.css" rel="stylesheet">
+<link rel="canonical"
+	href="https://getbootstrap.kr/docs/5.3/examples/cover/">
+</head>
+<body>
+
+	<!-- header -->
+	<th:block th:insert="~{template/client/fragments/block :: header}"></th:block>
+
+
+	<div class="reservation-container">
+		<!-- 첫 번째 섹션: 공간 이름 -->
+		<section class="reservation-section">
+			<p class="full-width">
+				<strong><span class="spName"
+					th:text="${reservation.spNo.spName}"></span></strong>
+			</p>
+
+			<!-- 예약 시작 시간 및 사용 시간은 다음 줄에 나란히 배치 -->
+			<div class="time-section">
+				<p>
+					입실 시간: <strong><span
+						th:text="*{#temporals.format(reservation.resDate, 'yyyy.MM.dd (EEEE) HH:mm')}"></span></strong>
+				</p>
+				<p>
+					퇴실시간: <strong><span th:text="${endTime}"></span></strong>
+				</p>
+			</div>
+			<div></div>
+
+			<!-- 예약 인원과 결제 금액을 같은 줄에 표시 -->
+			<div class="inline-info">
+				<p>
+					예약 인원: <strong><span th:text="${reservation.resPersonnel}"></span>
+						명</strong>
+				</p>
+				<p class="highlighted-amount">
+					결제 금액: <strong><span id="payment-amount"
+						th:text="${reservation.resAmount}"></span>원</strong>
+				</p>
+			</div>
+		</section>
+
+
+
+		<!-- 두 번째 섹션: 예약 인원 및 결제 금액 -->
+		<section class="reservation-section">
+			<h3>예약자 정보</h3>
+			<div class="form-group">
+				<label for="reserverName">예약자명 <span class="required">*</span></label>
+				<input type="text" id="reserverName" class="form-control"
+					placeholder="예약자명을 입력하세요" /> <input type="hidden" id="memberName"
+					th:data-member-name="${memberName}">
+			</div>
+
+			<div class="form-group">
+				<label for="reserverPhone">전화번호 <span class="required">*</span></label>
+				<input type="text" id="reserverPhone" class="form-control" maxlength="13"
+					placeholder="전화번호를 입력하세요" /> <input type="hidden" id="memberPhone"
+					th:data-member-phone="${memberPhone}">
+			</div>
+
+			<div class="form-group">
+				<input type="checkbox" id="autoFillCheckbox" /> <label
+					for="autoFillCheckbox">회원정보와 동일</label>
+			</div>
+			<div class="form-group">
+				<label for="reservationRequest">요청사항</label> <input type="text"
+					id="reservationRequest" class="form-control" th:data-res-request="${reservation.resRequest}">
+			</div>
+		</section>
+
+		<!-- 세 번째 섹션: 약관 동의 -->
+		<section class="reservation-section">
+			<h3>약관 동의</h3>
+
+			<!-- 이용 약관 -->
+			<div class="terms">
+				<label> <input type="checkbox" id="termsAgree" /> <span>이용
+						약관에 동의합니다.</span>
+				</label>
+				<textarea readonly class="terms-textarea">
+            이용약관
+        </textarea>
+			</div>
+
+			<!-- 개인정보 처리 방침 -->
+			<div class="terms">
+				<label> <input type="checkbox" id="privacyAgree" /> <span>개인정보
+						처리 방침에 동의합니다.</span>
+				</label>
+				<textarea readonly class="terms-textarea">
+            개인정보 처리 방침
+        </textarea>
+			</div>
+
+			<!-- 모두 동의 체크박스 -->
+			<div class="terms">
+				<label> <input type="checkbox" id="agreeAllCheckbox" /> <span>모두
+						동의</span>
+				</label>
+			</div>
+		</section>
+
+
+		<!-- 네 번째 섹션: 결제 버튼들 -->
+		<section class="reservation-section">
+			<h3>결제 수단 선택</h3>
+			<div class="payment-buttons">
+				<button class="payment-button" data-method="kakao">
+					<img
+						src="https://developers.kakao.com/tool/resource/static/img/button/pay/payment_icon_yellow_large.png"
+						alt="KakaoPay" class="button-icon">
+
+				</button>
+				<button class="payment-button" id="tosspay" data-method="toss">
+					<img
+						src="https://framerusercontent.com/images/Drn1qQIO9e99xqU7xmBBG8NjG8.jpg"
+						alt="TossPay" class="button-icon">
+					<div id="reservationInfo" th:data-resNo="${reservation.resNo}"></div>
+				</button>
+				<button class="payment-button" data-method="card">카드</button>
+				<button class="payment-button" data-method="mobile">핸드폰</button>
+			</div>
+		</section>
+
+
+	</div>
+
+	<th:block th:insert="~{template/client/fragments/block :: footer}"></th:block>
+
+	<script src="https://cdn.portone.io/v2/browser-sdk.js"></script>
+	<script src="/js/jquery-3.7.1.min.js"></script>
+	<script src="/js/common.js"></script>
+	<script src="/js/client/payment/payment.js"></script>
+</body>
+</html>

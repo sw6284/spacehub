@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" class="h-100" data-bs-theme="auto">
+<head>
+    <th:block th:insert="~{template/client/fragments/block :: config}"></th:block>
+    <meta name="theme-color" content="#712cf9">
+    <title>SpaceHub</title>
+    <link href="/css/client/main.css" rel="stylesheet">
+    <link rel="canonical" href="https://getbootstrap.kr/docs/5.3/examples/cover/">
+    <link rel="stylesheet" href="/css/client/mypage/userProfile.css">
+</head>
+<body class="d-flex flex-column h-100">
+    <header th:insert="~{template/client/fragments/block :: header}"></header>
+    <main class="flex-shrink-0 mt-5">
+	    <div id="container-profile" th:if="${isLoggedIn}">
+	        <div id="profile">
+	            <p>이름: <span th:text="${member.memberName}"></span></p>
+	            <p>아이디: <span th:text="${member.memberId}"></span></p>
+	            <p>이메일: <span th:text="${member.memberEmail}"></span></p>
+	            <p>전화번호: <span th:text="${member.memberPhone}"></span></p>
+	            <p>가입일자: <span th:text="${formattedDate}"></span></p>
+	        </div>
+	
+	        <div class="buttons">
+	            <button type="button" class="btn-second" id="userProfileUpdateFormBtn">개인정보 수정</button>
+	            <button type="button" class="btn-danger" id="userDeleteBtn">회원 탈퇴</button>
+	        </div>
+	    </div>
+	</main>
+	
+    <footer th:insert="~{template/client/fragments/block :: footer}" class="mt-auto"></footer>
+    
+    <script src="/js/jquery-3.7.1.min.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="/js/client/mypage/userProfile.js"></script>
+</body>
+</html>

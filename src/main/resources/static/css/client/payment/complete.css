@@ -1,0 +1,30 @@
+ .container {
+            max-width: 600px;
+            margin-top: 100px;
+            margin-bottom:200px;
+        }
+        .success-icon {
+            font-size: 80px;
+            color: #28a745;
+            margin-bottom: 20px;
+        }
+        .complete-message {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .payment-info {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .payment-info p {
+            margin: 0;
+            font-weight: bold;
+        }
+        .btn-home {
+            padding: 10px 20px;
+            font-size: 1rem;
+        }

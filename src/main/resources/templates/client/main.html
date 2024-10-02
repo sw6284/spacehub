@@ -1,165 +1,83 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" class="h-100"
-	data-bs-theme="auto">
-<head>
-<th:block th:insert="~{template/client/fragments/block :: config}"></th:block>
-<meta name="theme-color" content="#712cf9">
-<link href="/css/cover.css" rel="stylesheet">
-<link rel="canonical"
-	href="https://getbootstrap.kr/docs/5.3/examples/cover/">
-</head>
-<body class="d-flex h-100 text-center text-bg-dark">
-	<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-		<div
-			class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" class="h-100" data-bs-theme="auto">
+	<head>
+	    <th:block th:insert="~{template/client/fragments/block :: config}"></th:block>
+	    <meta name="theme-color" content="#712cf9">
+	    <link href="/css/client/main.css" rel="stylesheet">
+	    <link rel="canonical" href="https://getbootstrap.kr/docs/5.3/examples/cover/">
+	</head>
+	<body>
+	    <div>
+	    
+	        <th:block th:insert="~{template/client/fragments/block :: header}"></th:block>
+	
+	        <main>
+	        
+			    <!-- 메인 이미지 섹션 -->
+			    <section class="hero-section">
+			        <div class="hero-image">
+			            <img src="/images/client/yolk-coworking-krakow-o6zwhL9o3Co-unsplash.jpg" alt="Main Banner" class="hero-img">
+			            <div class="hero-text">
+			                <h1>Welcome to SpaceHub</h1>
+			                <p>Find and book the perfect space for your needs.</p>
+			            </div>
+			        </div>
+			    </section>
+	
+	            <!-- 추천 공간 리스트 -->
+	            <section id="spaces" class="mb-5">
+	                <h2 class="mb-4">추천 공간</h2>
+	                <div class="container">
+	                    <div class="row justify-content-center">
+	                        <!-- 동적으로 공간 데이터를 출력 -->
+				            <th:block th:each="space : ${topSpaces}">
+				                <div class="col-md-4 mb-4">
+				                    <div class="card h-100">
+				                        <img th:src="@{${space.spMainImage}}" class="card-img-top" th:alt="${space.spName}" alt="추천 공간">
+				                        <div class="card-body d-flex flex-column">
+				                            <h5 class="card-title" th:text="${space.spName}">공간 이름</h5>
+				                            <p class="card-text" th:text="${space.spKeyword}">공간 설명</p>
+				                            <!-- 공간 상세 페이지로 연결 -->
+				                            <a th:href="@{/space/{spNo}(spNo=${space.spNo})}" class="btn btn-primary mt-auto">자세히 보기</a>
+				                        </div>
+				                    </div>
+				                </div>
+				            </th:block>
+	                    </div>
+	                </div>
+	            </section>
+	
+	            <!-- 지도 -->
+	            <section id="map" class="mb-5">
+	                <h2 class="mb-4">지도</h2>
+	                <div class="map-container">
+	                    <!-- 지도 삽입 (예: Google Maps Embed) -->
+	                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3162.1122734149626!2d127.02762631531659!3d37.49794297982538!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b5b6ef0a2bb5b%3A0x6d8f5d88f6c8e1a!2z7J287Iud7Jq47Yq4!5e0!3m2!1sko!2skr!4v1639561470981!5m2!1sko!2skr" width="800" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+	                </div>
+	            </section>
+	
+	            <!-- 공간 대여 수칙 -->
+	            <section id="rules" class="mb-5">
+	            	<div id="rules-container">
+		                <h2 class="mb-4">공간 대여 수칙</h2>
+		                <ul>
+		                    <li>수칙 1: 대여 시 사전 예약 필수</li>
+		                    <li>수칙 2: 사용 후 청소를 부탁드립니다</li>
+		                    <li>수칙 3: 지정된 시간 내에 사용을 완료해 주세요</li>
+		                    <li>수칙 4: 음주 및 흡연 금지</li>
+		                    <li>수칙 5: 시설에 대한 책임을 다해 주세요</li>
+		                </ul>
+	                </div>
+	            </section>
+	           
+	        </main>
+	       
+        	<th:block th:insert="~{template/client/fragments/block :: footer}"></th:block>
 
-
-			<!-- header -->
-			<th:block th:insert="~{template/client/fragments/block :: header}"></th:block>
-
-			<div>
-				<button class="payment-button" data-method="kakao">카카오</button>
-				<button class="payment-button" data-method="toss">토스페이</button>
-				<button class="payment-button" data-method="basic">일반결제</button>
-				<button class="payment-button" data-method="mobile">휴대폰
-					소액결제</button>
-				<button class="test-btn" data-method="mobile">결제정보 전송테스트</button>
-			</div>
-
-		</div>
-
-	</div>
-	<script src="assets/dist/js/bootstrap.bundle.min.js"></script>
-	<script src="https://cdn.portone.io/v2/browser-sdk.js"></script>
-	<script src="/js/jquery-3.7.1.min.js"></script>
-	<script src="/js/common.js"></script>
-	<script>
-	$(document).ready(function() {
-	    $('.payment-button').click(async function() {
-	        var paymentMethod = $(this).data('method');
-	        console.log("Selected payment method: " + paymentMethod);
-
-	        // 기본값 설정
-	        let channelKey = "";
-	        let payMethod = "";
-
-	        // 결제 방법에 따라 키 값 설정
-	        if(paymentMethod === "kakao") {
-	            channelKey = "channel-key-1972b134-d930-4897-9599-f805035dac66";
-	            payMethod = "EASY_PAY";
-	        } else if (paymentMethod === "toss") {
-	            channelKey = "channel-key-31017ccc-371d-440c-b9e4-459bc3323d14"; // 실제 토스 채널 키로 변경
-	            payMethod = "EASY_PAY";
-	        } else if (paymentMethod === "basic") {
-	            channelKey = "channel-key-f20734f6-5df3-406f-8d66-56a0ffa0aa1f"; // 실제 일반 결제 채널 키로 변경
-	            payMethod = "CARD";
-	        } else if (paymentMethod === "mobile") {
-	            channelKey = "channel-key-f20734f6-5df3-406f-8d66-56a0ffa0aa1f"; // 실제 일반 결제 채널 키로 변경
-	            payMethod = "MOBILE";
-	        }
-
-	        try {
-	            const paymentId = `pay-${crypto.randomUUID().substring(0, 20)}`; // 주문 번호를 40자 이하로 제한
-
-	            const requestOptions = {
-	                storeId: "store-6fcc723b-ff52-4915-9fdd-d5bc06e8c273",
-	                channelKey: channelKey,
-	                paymentId: paymentId,
-	                orderName: "1번방",
-	                totalAmount: 100000,
-	                currency: "KRW",
-	                payMethod: payMethod,
-	                
-	            };
-
-	            // 결제 방법이 모바일일 경우 추가 옵션 설정
-	            if(paymentMethod === "mobile"){
-	                requestOptions.bypass = {
-	                    "kcp_v2": {
-	                        "site_logo": "https://portone.io/assets/portone.jpg",
-	                        "skin_indx": 6,
-	                        "shop_user_id": "user_id1",
-	                        "site_name": "모바일 결제"
-	                    }
-	                };
-	            }
-
-	            // 결제 요청 함수 호출
-	            const response = await PortOne.requestPayment(requestOptions);
-
-	            if (response.code != null) {
-	                // 오류 발생 시 처리
-	                return alert(response.message);
-	            }
-
-	            // 결제가 성공하면 서버로 결제 완료 정보 전송
-	            const SERVER_BASE_URL = "http://localhost:8080";
-	            const notified = await fetch(`${SERVER_BASE_URL}/payment/completeCheck`, {
-	                method: "POST",
-	                headers: { "Content-Type": "application/json" },
-	                body: JSON.stringify({
-	                    paymentId: paymentId,
-	                    orderName: requestOption.orderName,
-	                    totalAmount: requestOption.totalAmount,
-	                    currency: "KRW",
-	                    payMethod: payMethod,
-	                    r_no: 12,
-	                }),
-	            });
-
-	            if (notified.ok) {
-	                // 결제 성공 시 페이지 이동
-	                window.location.href = "/payment/complete";  // 결제 성공 페이지로 이동
-	            } else {
-	                alert("서버에 결제 완료 정보를 알리는 데 실패했습니다.");
-	            }
-
-	        } catch (error) {
-	            console.error("결제 요청 중 오류가 발생했습니다:", error);
-	            alert("결제 요청 중 오류가 발생했습니다.");
-	        }
-	    });
-
-	    // 결제 전송 테스트 버튼 클릭 시
-	    $('.test-btn').click(async function() {
-	        try {
-	            const paymentId = `test-pay-${crypto.randomUUID().substring(0, 20)}`; // 테스트용 주문 번호
-
-	            // 테스트용 결제 정보
-	            const testRequestOptions = {
-	                paymentId: paymentId,
-	                orderName: "테스트 결제",
-	                totalAmount: 1000, // 테스트 금액
-	                currency: "KRW",
-	                payMethod: "TEST", // 테스트용 결제 방법
-	            };
-
-	            // 서버로 결제 완료 정보 전송 (결제 페이지만 제외하고)
-	            const SERVER_BASE_URL = "http://localhost:8080";
-	            const notified = await fetch(`${SERVER_BASE_URL}/payment/completeCheck`, {
-	                method: "POST",
-	                headers: { "Content-Type": "application/json" },
-	                body: JSON.stringify(testRequestOptions),
-	            });
-
-	            if (notified.ok) {
-	                // 테스트 결제 정보 전송 성공 시 페이지 이동
-	                //window.location.href = "/payment/complete";  // 테스트 성공 페이지로 이동
-	            } else {
-	                alert("서버에 결제 완료 정보를 알리는 데 실패했습니다.");
-	            }
-
-	        } catch (error) {
-	            console.error("Test payment info 전송 중 오류가 발생했습니다:", error);
-	            alert("Test payment info 전송 중 오류가 발생했습니다.");
-	        }
-	    });
-	});
-
-	</script>
-</body>
+	    </div>
+	    
+	    <script src="/assets/dist/js/bootstrap.bundle.min.js"></script>
+	    <script src="/js/jquery-3.7.1.min.js"></script>
+	    <script src="/js/common.js"></script>
+	</body>
 </html>
-
-
-

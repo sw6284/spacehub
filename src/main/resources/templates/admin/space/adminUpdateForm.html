@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자 공간 수정 페이지</title>
+    
+    <th:block th:insert="~{template/admin/fragments/adminNav :: config}"></th:block>
+    <link rel="stylesheet" href="/css/admin/space/adminUpdateForm.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <th:block th:insert="~{template/admin/fragments/adminNav :: admin-nav}"></th:block>
+        
+        <div class="main-content">
+            <div class="container">
+                <h1>공간 수정 페이지</h1>
+                <hr />
+                <form action="#" th:action="@{/admin/space/updateSpace}" method="post" enctype="multipart/form-data">
+                    <!-- hidden input fields for identifiers -->
+                    <input type="hidden" name="spNo" th:value="${updateSpace.spNo}" />
+                    <input type="hidden" name="spDetail" th:value="${updateSpaceDetail.spDetail}" />
+                    
+                    <table class="form-table">
+                        <tbody>
+                            <tr>
+                                <th>관리자번호</th>
+                                <td><input type="text" name="admNo" th:value="${updateSpace.admNo}" /></td>
+                            </tr>
+                            <tr>
+                                <th><label for="spName">공간 이름</label></th>
+                                <td><input type="text" id="spName" name="spName" th:value="${updateSpace.spName}" required /></td>
+                            </tr>
+                            <tr>
+                                <th><label for="spCapacity">이용 인원</label></th>
+                                <td><input type="text" id="spCapacity" name="spCapacity" th:value="${updateSpace.spCapacity}" />명</td>
+                            </tr>
+                            <tr>
+                                <th><label for="spHourPrice">시간당 가격</label></th>
+                                <td><input type="number" id="spHourPrice" name="spHourPrice" th:value="${updateSpace.spHourPrice}" required />원/시간</td>
+                            </tr>
+                            <!-- <tr>
+                                <th><label for="spUseTime">이용 가능 시간</label></th>
+                                <td><input type="text" id="spUseTime" name="spUseTime" th:value="${updateSpaceDetail.spUseTime}" /></td>
+                            </tr> -->
+                            <tr>
+                                <th><label for="spKeyword">공간 키워드</label></th>
+                                <td>
+                                    <div class="checkbox-group">
+                                        <label><input type="checkbox" name="spKeyword" value="회의" th:field="*{updateSpace.spKeyword}"/> 회의</label>
+                                        <label><input type="checkbox" name="spKeyword" value="세미나" th:field="*{updateSpace.spKeyword}"/> 세미나</label>
+                                        <label><input type="checkbox" name="spKeyword" value="워크숍" th:field="*{updateSpace.spKeyword}"/> 워크숍</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><label for="spDescription">공간 설명</label></th>
+                                <td><textarea id="spDescription" name="spDescription" th:text="${updateSpaceDetail.spDescription}"></textarea></td>
+                            </tr>
+                            <tr>
+                                <th><label for="spEquipment">비치된 물품</label></th>
+                                <td>
+                                    <div class="checkbox-group">
+                                        <label><input type="checkbox" name="spEquipment" value="화이트보드" th:field="*{updateSpaceDetail.spEquipment}"/> 화이트보드</label>
+                                        <label><input type="checkbox" name="spEquipment" value="프로젝터" th:field="*{updateSpaceDetail.spEquipment}"/> 프로젝터</label>
+                                        <label><input type="checkbox" name="spEquipment" value="유선 마이크, 스피커" th:field="*{updateSpaceDetail.spEquipment}"/> 유선 마이크, 스피커</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><label for="spImg">공간 이미지</label></th>
+                                <td>
+                                    <input type="file" id="spImg" name="spImgFiles" accept="image/*" />
+                                    <div id="imagePreview"></div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br />
+                    <!-- 제출 버튼 -->
+                    <div class="button-group">
+                        <button type="submit" id="spaceSaveBtn" class="btn-success">수정 저장</button>
+                        <button type="button" id="spaceCancelBtn" class="btn-danger">취소</button>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- <script src="/js/admin/space/adminUpdateForm.js"></script> -->
+</body>
+</html>

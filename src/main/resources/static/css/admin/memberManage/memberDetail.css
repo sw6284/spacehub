@@ -1,0 +1,76 @@
+.wrapper {
+    display: flex;
+    height: 100vh;
+    background-color: #f8f9fa;
+    color: black;
+}
+
+/* 메인 콘텐츠 스타일 */
+.main-content {
+    flex: 1;
+    max-width: 100%;
+    padding: 20px;
+    margin: 0 auto;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+}
+
+/* 회원 상세 정보 섹션 스타일 */
+#detail {
+    background-color: #fff;
+    padding: 30px;
+    margin: 20px auto;
+    max-width: 700px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+}
+
+/* 제목 스타일 */
+h1 {
+    text-align: center;
+    margin-top: 0;
+}
+
+/* 문단 스타일 */
+#detail p {
+    margin: 30px 5px;
+    font-size: 18px;
+}
+
+#detail span {
+    font-weight: bold;
+}
+
+/* 버튼 스타일 */
+.buttons {
+    margin: 20px auto;
+    max-width: 700px;
+    display: flex;
+    justify-content: flex-end; /* 버튼을 오른쪽 끝으로 정렬 */
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .main-content {
+        padding: 15px;
+    }
+
+    #detail {
+        padding: 20px;
+        max-width: 100%;
+    }
+
+    .buttons {
+        flex-direction: column;
+        align-items: flex-end;
+    }
+
+    .buttons button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}

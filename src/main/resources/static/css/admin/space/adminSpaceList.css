@@ -1,0 +1,102 @@
+/* 기본 스타일 */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #000;
+}
+
+/* Wrapper - flex 컨테이너 */
+.wrapper {
+    display: flex;
+    height: 100vh;
+}
+
+/* 메인 콘텐츠 영역 */
+.main-content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+/* 컨테이너 */
+.container {
+    padding: 20px;
+}
+
+/* 텍스트 중앙 정렬 및 마진 */
+.text-center {
+    text-align: center;
+}
+
+.mb-4 {
+    margin-bottom: 1.5rem;
+}
+
+/* 카드 레이아웃 */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+/* 카드 아이템 */
+.col.item {
+    flex: 1 1 calc(33.333% - 1rem);
+    max-width: calc(33.333% - 1rem);
+}
+
+/* 카드 */
+.card {
+    background-color: #fff; /* 카드 배경 색상 흰색으로 설정 */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.card-img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.card-body {
+	background: #fff;
+    padding: 15px;
+    color: #000; /* 카드 본문 텍스트 색상 검은색으로 설정 */
+}
+
+.card-title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+/* 리스트 그룹 */
+.list-group {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.list-group-item {
+	background: #fff;
+    padding: 10px 15px;
+    border-top: 1px solid #ddd;
+    color: #000; /* 리스트 그룹 항목 텍스트 색상 검은색으로 설정 */
+}
+
+/* 공간 정보 없음 메시지 */
+.no-spaces {
+    text-align: center;
+    padding: 20px;
+    font-size: 1.125rem;
+    color: #666;
+}
+
+/* 버튼 정렬 */
+.text-end {
+    text-align: right;
+}

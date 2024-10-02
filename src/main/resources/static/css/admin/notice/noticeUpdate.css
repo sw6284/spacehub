@@ -1,0 +1,125 @@
+/* 공통 스타일 설정 */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper {
+    display: flex;
+    height: 100vh;
+    background-color: #ffffff;
+}
+
+/* 왼쪽 네비게이션 */
+.mb-auto {
+    width: 250px; /* 네비게이션 너비 조정 */
+    background-color: #f8f9fa;
+    border-right: 1px solid #dee2e6;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 오른쪽 콘텐츠 영역 */
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 제목 영역 스타일 */
+.header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px; /* 제목과 콘텐츠 간의 여백 조정 */
+}
+
+.header h3 {
+    margin: 0;
+    padding-left: 20px; /* 네비게이션과 제목 간의 간격 조정 */
+    font-size: 24px;
+    color: #333;
+}
+
+/* 폼 컨테이너 스타일 */
+.container {
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 800px;
+    box-sizing: border-box;
+}
+
+/* 폼 필드 스타일 */
+.form-control {
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.25);
+}
+
+/* 버튼 스타일 */
+.btn {
+    border-radius: 4px;
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: 1px solid #007bff;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border: 1px solid #6c757d;
+    color: #fff;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+    border-color: #545b62;
+}
+
+/* 에러 메시지 스타일 */
+.alert {
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+}
+
+/* 버튼 그룹 스타일 */
+.text-end {
+    margin-top: 20px;
+    text-align: right;
+}
+
+.text-end .btn {
+    margin-left: 10px;
+}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpaceHub</title>
+    <link rel="stylesheet" href="/css/client/auth/findPwdResult.css">
+    
+</head>
+<body>
+    <div class="container">
+        <h1>비밀번호 발송 완료</h1>
+        <p>작성하신 이메일로 임시 비밀번호를 발송하였습니다.</p>
+        <div class="form-actions">
+            <button type="button" id="loginFormBtn">로그인 화면으로 이동</button>
+        </div>
+    </div>
+    
+    <script src="/js/jquery-3.7.1.min.js"></script>
+    <script src="/js/common.js"></script>
+    <script>	
+	    $("#loginFormBtn").on("click", function(){
+	        locationProcess("/auth/login");
+	    });
+    </script>
+</body>
+</html>

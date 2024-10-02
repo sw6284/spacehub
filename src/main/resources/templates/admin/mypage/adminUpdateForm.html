@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" class="h-100" data-bs-theme="auto">
+<head>
+	<th:block th:insert="~{template/admin/fragments/adminNav :: config}"></th:block>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpaceHub 관리자</title>
+    <link rel="stylesheet" href="/css/admin/mypage/adminUpdateForm.css">
+</head>
+	
+<body>
+    <div class="wrapper">
+        <!-- 왼쪽 네비게이션 (공통) -->
+        <div class="mb-auto">
+	        <th:block th:insert="~{template/admin/fragments/adminNav :: admin-nav}"></th:block>
+	    </div>
+	    <div class="main-content">
+		    <form id="updateForm" th:object="${admin}">
+		        <div class="form-group">
+		            <label for="admId">아이디</label>
+		            <input type="text" id="admId" name="admId" th:field="*{admId}" disabled/>
+		        </div>
+		
+		        <div class="form-group">
+		            <label for="newPassword">비밀번호</label>
+		            <input type="password" id="newPassword" name="newPassword"/>
+		        </div>
+		
+		        <div class="form-group">
+		            <label for="newPasswordConfirm">비밀번호 확인</label>
+		            <input type="password" id="newPasswordConfirm" name="newPasswordConfirm" />
+		        </div>
+		
+		        <div class="form-group">
+		            <label for="admName">이름</label>
+		            <input type="text" id="admName" name="admName" th:field="*{admName}" required />
+		        </div>
+		
+		        <div class="form-group">
+		            <label for="admEmail">이메일</label>
+		            <input type="email" id="admEmail" name="admEmail" th:field="*{admEmail}" disabled />
+		        </div>
+		
+		        <div class="form-group">
+		            <label for="admPhone">전화번호</label>
+		            <input type="text" id="admPhone" name="admPhone" th:field="*{admPhone}" required />
+		        </div>
+		
+		        <div class="text-end">
+		        	<button type="button" id="resetBtn">초기화</button>
+		            <button type="button" id="adminUpdateBtn">수정</button>
+		            <button type="button" id="cancelBtn">취소</button>
+		        </div>    
+		    </form>
+    	</div>
+	</div>
+	
+    <script src="/js/jquery-3.7.1.min.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="/js/admin/mypage/adminUpdateForm.js"></script> 
+</body>
+</html>

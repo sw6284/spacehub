@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">    
+<head>
+     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <th:block th:insert="~{template/client/fragments/block :: config}"></th:block>
+    <title>문의 작성</title>
+     <link rel="stylesheet" href="/css/client/inquiry/inquiryList.css">
+     <link href="/css/client/button.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<th:block th:insert="~{template/client/fragments/block :: header}"></th:block>
+
+    <form id="inquiryUpdateForm" name="inquiryUpdate" th:object="${inqUpdate}">
+        <div class="container mt-4">
+            <div class="text-center mb-4">
+                <h3>게시판 수정</h3>
+            </div>
+            
+            <div class="form-group">
+                <label for="inqNo">문의 번호</label>
+                <input type="hidden" name="inqNo" th:value="*{inqNo}" />
+                <p th:text="*{inqNo}"></p>
+            </div>
+            
+            <div class="form-group">
+                <label for="memberName">작성자</label>
+                <input type="text" class="form-control" id="memberName" th:value="*{member.memberName}" readonly />
+            </div>
+            
+            <div class="form-group">
+                <label for="inqDate">작성일</label>
+                <input type="text" class="form-control" id="inqDate" th:value="*{inqDate}" readonly />
+            </div>
+            
+            <div class="form-group">
+                <label for="inqTitle">글제목</label>
+                <input type="text" class="form-control" id="inqTitle" name="inqTitle" th:value="*{inqTitle}" />
+            </div>
+            
+            <div class="form-group">
+                <label for="inqContent">글내용</label>
+                <textarea class="form-control" id="inqContent" rows="8" th:field="*{inqContent}"></textarea>
+            </div>
+            
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="inqSecret" th:field="*{inqSecret}" />
+                <label class="form-check-label" for="inqSecret">비밀글</label>
+            </div>
+            
+            <div class="form-group mt-3">
+                <label for="inqPassword">비밀번호</label>
+                <input type="password" class="form-control" id="inqPassword" th:field="*{inqPassword}" placeholder="비밀번호를 입력하세요" />
+            </div>
+            
+            <div class="text-center mt-4">
+                <button type="button" id="updateFormBtn" class="btn btn-primary btn-sm">글수정</button>
+                <button type="button" id="inquiryListBtn" class="btn btn-secondary btn-sm">글목록</button>
+            </div>
+        </div>
+    </form>
+    
+    
+    <script src="/js/jquery-3.7.1.min.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="/js/client/inquiry/updateForm.js"></script>
+</body>
+</html>

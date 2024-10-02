@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" class="h-100" data-bs-theme="auto">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpaceHub 관리자</title>
+    <link href="/css/coveradmin.css" rel="stylesheet">
+</head>
+<body>
+    <div class="wrapper">
+
+        <!-- 왼쪽 네비게이션 -->
+        <nav class="sidebar">
+            <h2>SpaceHub 관리자</h2>
+            <ul>
+                <li><a href="#">홈</a></li>
+                <li><a href="#">마이페이지</a></li>
+                <li><a href="#">공간 관리</a></li>
+                <li><a href="#">문의 게시판</a></li>
+                <li><a href="#">공지 게시판</a></li>
+            </ul>
+        </nav>
+
+        <!-- 오른쪽 콘텐츠 영역 -->
+        <div class="main-content">
+            <header>
+                <h1>대시보드</h1>
+            </header>
+
+            <div class="container">
+                <div class="dashboard">
+                    <div class="card">
+                        <h3>오늘 가입자 수</h3>
+                        <p>123명</p>
+                    </div>
+                    <div class="card">
+                        <h3>어제의 결제금액</h3>
+                        <p>100000원</p>
+                        <h3>오늘의 결제금액</h3>
+                        <p>200000원</p>
+                    </div>
+                    <div class="card">
+                        <h3>오늘 사용할 예약자</h3>
+                        <ul class="popular-spaces">
+                            <li>1. 공간 A || 김가나</li>
+                            <li>2. 공간 B || 박다라</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>최근 문의</h3>
+                        <ul class="inquiry-list">
+                            <li>문의 1: 답변 완료</li>
+                            <li>문의 2: 답변 대기</li>
+                            <li>문의 3: 답변 완료</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/assets/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/jquery-3.7.1.min.js"></script>
+    <script src="/js/common.js"></script>
+</body>
+</html>

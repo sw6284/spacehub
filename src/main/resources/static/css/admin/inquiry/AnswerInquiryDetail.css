@@ -1,0 +1,31 @@
+/* 댓글 적용 스타일 */
+#answerInquiryListBtn,
+#answerCancelBtn {
+    display: inline-block;
+    margin: 5px;
+    visibility: visible;
+}
+
+
+#item-template{ display: none; }
+.reply-count{ color:red; font-size:12px; }
+
+
+/* 전체 레이아웃 */
+.wrapper {
+    display: flex;
+    background-color: #f8f9fa;
+    color: black;
+}
+
+/* 메인 콘텐츠 스타일 */
+.main-content {
+    flex: 1;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    margin: 20px auto; /* 중앙 정렬 */
+    max-width: 1000px; /* 너비 줄이기 */
+    box-sizing: border-box;
+}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" class="h-100" data-bs-theme="auto">
+	<head>
+		<th:block th:insert="~{template/admin/fragments/adminNav :: config}"></th:block>
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <title>SpaceHub 관리자</title>
+	    <link href="/css/admin/adminMain.css" rel="stylesheet">
+	</head>
+	
+	<body>
+	    <div class="wrapper">
+	        <!-- 왼쪽 네비게이션 (공통) -->
+	        <div class="mb-auto">
+		        <th:block th:insert="~{template/admin/fragments/adminNav :: admin-nav}"></th:block>
+		    </div>
+	
+	        <!-- 오른쪽 콘텐츠 영역 -->
+	        <div class="main-content">
+	            <header>
+	                <h1>대시보드</h1>
+	            </header>
+	
+	            <div class="container">
+	                <div class="dashboard">
+	                    <div class="card">
+	                        <h3>오늘 가입자 수</h3>
+	                        <p>123명</p>
+	                    </div>
+	                    <div class="card">
+	                        <h3>어제의 결제금액</h3>
+	                        <p>100000원</p>
+	                        <h3>오늘의 결제금액</h3>
+	                        <p>200000원</p>
+	                    </div>
+	                    <div class="card">
+	                        <h3>오늘 사용할 예약자</h3>
+	                        <ul class="popular-spaces">
+	                            <li>1. 공간 A || 김가나</li>
+	                            <li>2. 공간 B || 박다라</li>
+	                        </ul>
+	                    </div>
+	                    <div class="card">
+	                        <h3>최근 문의</h3>
+	                        <ul class="inquiry-list">
+	                            <li>문의 1: 답변 완료</li>
+	                            <li>문의 2: 답변 대기</li>
+	                            <li>문의 3: 답변 완료</li>
+	                        </ul>
+	                    </div>
+	                    <div>
+	                    	<h3>버튼 css 샘플 - 클래스명 지정</h3>
+                            <button class="btn-primary">btn-primary</button>
+	                        <button class="btn-second">btn-second</button>
+	                        <button class="btn-success">btn-success</button>
+	                        <button class="btn-danger">btn-danger</button>
+	                        <button class="btn-accent">btn-accent</button>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	
+	
+	    <script src="/js/jquery-3.7.1.min.js"></script>
+	    <script src="/js/common.js"></script>
+	</body>
+</html>

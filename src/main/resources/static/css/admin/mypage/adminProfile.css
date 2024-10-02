@@ -1,0 +1,83 @@
+.wrapper {
+    display: flex;
+    height: 100vh;
+    background-color:  #f8f9fa;
+	color: black;
+}
+/* 메인 콘텐츠 스타일 */
+.container {
+    padding: 20px;
+    max-width: 1200px; /* 사용자 페이지와 동일한 너비 설정 */
+    margin: 0 auto; /* 중앙 정렬 */
+}
+
+h2 {
+    text-align: center; /* 제목 중앙 정렬 */
+    margin-top: 0;
+}
+
+/* 메인 컨테이너 스타일 */
+.main-content {
+    flex: 1;
+    max-width: 100%;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+}
+
+
+/* 프로필 섹션 스타일 */
+#profile {
+    background-color: #fff;
+    padding: 30px;
+    margin: 20px auto;
+    max-width: 700px; /* 너비 증가 */
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+/* 프로필 문단 스타일 */
+#profile p {
+    margin: 20px 0; /* 문단 간격 감소 */
+    font-size: 18px; /* 폰트 크기 조정 */
+}
+
+#profile span {
+    font-weight: bold;
+}
+
+/* 버튼 스타일 */
+.buttons {
+    display: flex;
+    justify-content: center; /* 버튼 중앙 정렬 */
+    gap: 10px; /* 버튼 간격 */
+    margin-top: 20px;
+}
+
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .main-content {
+        padding: 15px;
+        margin: 20px;
+    }
+
+    #profile {
+        padding: 20px;
+        margin: 10px;
+        max-width: 100%;
+    }
+
+    .buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .buttons button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}

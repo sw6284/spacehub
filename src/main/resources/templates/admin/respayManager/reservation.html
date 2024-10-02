@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<link href="/assets/dist/css/bootstrap.min.css" rel="stylesheet" />
+<th:block th:insert="~{template/admin/fragments/adminNav :: config}"></th:block>
+<link href="/css/admin/payment/payment.css" rel="stylesheet">
+</head>
+<body>
+	<div class="wrapper">
+
+		<div class="mb-auto">
+			<th:block
+				th:insert="~{template/admin/fragments/adminNav :: admin-nav}">
+			</th:block>
+		</div>
+		<div class="container text-center">
+			<h1>관리자 예약 관리</h1>
+			<!-- 필터 및 검색 -->
+			<div class="row mb-1">
+				<div class="col-md-3">
+					<select class="form-select" id="searchType">
+						<option value="name">예약자명</option>
+						<option value="date">예약 날짜</option>
+					</select>
+				</div>
+				<div class="col-md-4" id="textArea">
+					<input type="text" class="form-control" id="searchKeyword"
+						placeholder="검색어를 입력하세요">
+				</div>
+				<div class="col-md-4" id="dateArea">
+					<input type="date" class="form-control" id="startDate" />
+				</div>
+				<div class="col-md-4">
+					<button class="btn btn-primary" id="searchButton">검색</button>
+				</div>
+			</div>
+
+
+			<div id="reservation-list">
+				<!-- 예약 목록 테이블 -->
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>예약 번호</th>
+							<th>예약자명</th>
+							<th>예약일자</th>
+							<th>상태</th>
+							<th></th>
+						</tr>
+					</thead>
+					<div th:fragment="reservationTable">
+						<tbody>
+							<tr th:each="reservation : ${reservations}"
+								th:data-resno="${reservation.resNo}">
+								<td th:text="${reservation.resNo}"></td>
+								<td th:text="${reservation.resName}"></td>
+								<td
+									th:text="*{#temporals.format(reservation.resStartTime, 'yyyy-MM-dd')}"></td>
+								<td th:text="${reservation.resState}"></td>
+								<td th:if="${reservation.resState == '결제완료'}">
+									<button class="btn btn-secondary btn-sm cancelBtn">환불</button>
+								</td>
+								<td th:if="${reservation.resState != '결제완료'}"></td>
+							</tr>
+						</tbody>
+					</div>
+				</table>
+
+				<!-- 예약이 없을 때 표시 -->
+				<div th:if="${reservations.isEmpty()}">
+					<p>예약 정보가 없습니다.</p>
+				</div>
+
+				<!-- 페이지 네비게이션 -->
+				<nav aria-label="Page navigation">
+					<ul class="pagination">
+						<li th:if="${pageResponse.prev}"><a class="page-link"
+							th:href="@{/reservation/list(page=${pageResponse.prevPage})}"
+							aria-label="Previous"> &laquo; </a></li>
+						<li th:each="i : ${pageResponse.pageNumList}"
+							th:classappend="${i == pageResponse.current} ? 'active'"><a
+							class="page-link" th:text="${i}"
+							th:href="@{/admin/reservationManager(page=${i})}"></a></li>
+						<li th:if="${pageResponse.next}"><a class="page-link"
+							th:href="@{/admin/reservationManager(page=${pageResponse.nextPage})}"
+							aria-label="Next"> &raquo; </a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+
+
+	</div>
+
+	<script src="/js/jquery-3.7.1.min.js"></script>
+	<script src="/js/admin/payment/payment.js"></script>
+</body>
+</html>

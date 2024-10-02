@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" class="h-100"
+	data-bs-theme="auto">
+<head>
+<th:block th:insert="~{template/client/fragments/block :: config}"></th:block>
+<meta name="theme-color" content="#712cf9">
+<link href="/css/client/payment/payment.css" rel="stylesheet">
+<link rel="canonical"
+	href="https://getbootstrap.kr/docs/5.3/examples/cover/">
+</head>
+<body>
+	<div>
+		<header>
+			<nav>
+				<th:block th:insert="~{template/client/fragments/block :: header}"></th:block>
+			</nav>
+		</header>
+
+		<main>
+			<div class=""></div>
+			<table></table>
+			<div class="content text-center">
+
+ <div class="container">
+        <section class="payment-section">
+            <h2>결제 정보</h2>
+            <div class="payment-info">
+                <p><strong>예약 번호:</strong> <span th:text="${reservation.resNo}"></span></p>
+                <p><strong>회원 이름:</strong> <span th:text="${reservation.member.memberName}"></span></p>
+                <p><strong>공간 이름:</strong> <span th:text="${reservation.spNo.spName}"></span></p>
+                <p><strong>예약 금액:</strong> <span th:text="${#numbers.formatInteger(reservation.resAmount)}"></span> 원</p>
+            </div>
+        </section>
+
+        <section class="terms-section">
+            <h2>약관 동의</h2>
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" id="all-terms" />
+                    <span>필수 약관 전체 동의</span>
+                </label>
+            </div>
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" class="term-checkbox" />
+                    <span>[필수] 만 14세 이상 이용 동의</span>
+                </label>
+            </div>
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" class="term-checkbox" />
+                    <span>[필수] 개인정보 수집 및 이용 동의</span>
+                </label>
+                <a href="#">보기</a>
+            </div>
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" class="term-checkbox" />
+                    <span>[필수] 개인정보 제 3자 제공</span>
+                </label>
+                <a href="#">보기</a>
+            </div>
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" class="term-checkbox" />
+                    <span>[선택] 이벤트, 혜택 정보 수신 동의</span>
+                </label>
+            </div>
+        </section>
+
+        <section class="payment-button-section">
+            <button type="button" id="payment-button" disabled>결제하기</button>
+        </section>
+    </div>
+				<table class="table table-borderless">
+
+					<tr>
+						<td><button class="payment-button" data-method="basic">일반결제</button></td>
+						<td><button class="payment-button" data-method="mobile">휴대폰소액결제</button>
+					</tr>
+					<tr>
+						<td><button class="payment-button" data-method="kakao">카카오</button></td>
+					</tr>
+					<tr>
+						<td><button class="payment-button" data-method="toss">토스페이</button></td>
+					</tr>
+				</table>
+				<div></div>
+			</div>
+
+
+		</main>
+
+		<footer>
+			<nav>
+				<th:block th:insert="~{template/client/fragments/block :: footer}"></th:block>
+			</nav>
+		</footer>
+	</div>
+
+
+	<script src="https://cdn.portone.io/v2/browser-sdk.js"></script>
+	<script src="/js/jquery-3.7.1.min.js"></script>
+	<script src="/js/common.js"></script>
+	<script src="/js/client/payment/payment.js"></script>
+</body>
+</html>

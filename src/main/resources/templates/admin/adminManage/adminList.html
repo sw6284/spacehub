@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" class="h-100" data-bs-theme="auto">
+<head>
+    <th:block th:insert="~{template/admin/fragments/adminNav :: config}"></th:block>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpaceHub 관리자</title>
+    <link rel="stylesheet" href="/css/admin/memberManage/memberList.css">
+</head>
+<body>
+    <div class="wrapper">
+        <!-- 왼쪽 네비게이션 (공통) -->
+        <nav class="nav">
+            <th:block th:insert="~{template/admin/fragments/adminNav :: admin-nav}"></th:block>
+        </nav>
+        
+        <!-- 메인 콘텐츠 -->
+        <div class="main-content">
+            <h1>관리자 관리</h1>
+            <div id="memberSearch" class="my-2">
+                <form id="searchForm" th:action="@{/admin/adminManage}" method="get">
+                    <input type="hidden" name="page" id="page" th:value="${adminList.current}">
+                    <input type="hidden" name="size" id="size" th:value="${adminList.pageRequestDTO.size}">
+                    <input type="hidden" name="state" id="hiddenState" th:value="${currentState}">
+                </form>
+                <select id="status-filter" name="state">
+                    <option value="all" th:selected="${currentState == 'all'}">전체</option>
+                    <option value="active" th:selected="${currentState == 'active'}">재직</option>
+                    <option value="delete" th:selected="${currentState == 'delete'}">퇴사</option>
+                </select>
+                <button class="btn-success" type="button" id="insertAdminBtn">신규 관리자</button>
+            </div>
+            
+            <div class="admin-table-height">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr class="text-center">
+                            <th class="col-md-1">No</th>
+                            <th class="col-md-2">아이디</th>
+                            <th class="col-md-2">이름</th>
+                            <th class="col-md-3">이메일</th>
+                            <th class="col-md-2">재직상태</th>
+                            <th class="col-md-2">최고권한</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:if="${#lists.size(adminList.dtoList) == 0}">
+                            <td colspan="6" class="text-center">등록된 관리자 정보가 없습니다.</td>
+                        </tr>
+                        <th:block th:if="${not #strings.isEmpty(adminList.dtoList)}">
+                            <tr th:each="admin : ${adminList.dtoList}" 
+                                th:attr="data-admin-no=${admin.admNo}, data-status=${admin.admState}, data-id=${admin.admId}, data-email=${admin.admEmail}">
+                                <td th:text="${admin.admNo}">No</td>
+                                <td class="adminId" th:text="${admin.admId}">ID</td>
+                                <td class="goDetail" th:text="${admin.admName}">Name</td>
+                                <td class="adminEmail" th:text="${admin.admEmail}">Email</td>
+                                <td th:text="${admin.admState}">Status</td>
+                                <td th:text="${admin.admSuper}">Super</td>
+                            </tr>
+                        </th:block>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 페이지네이션 -->
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <!-- 이전 페이지 버튼 -->
+                    <th:block th:if="${adminList.prev}">
+                        <li class="page-item">
+                            <a th:href="@{/admin/adminManage(page=${adminList.prevPage}, size=${adminList.pageRequestDTO.size}, state=${currentState})}" class="page-link">Previous</a>
+                        </li>
+                    </th:block>
+            
+                    <!-- 페이지 번호 출력 -->
+                    <li th:each="number : ${adminList.pageNumList}" 
+                        th:classappend="'page-item ' + ${(adminList.current == number) ? 'active' : ''}">
+                        <a th:href="@{/admin/adminManage(page=${number}, size=${adminList.pageRequestDTO.size}, state=${currentState})}" class="page-link" th:text="${number}"></a>
+                    </li>
+            
+                    <!-- 다음 페이지 버튼 -->
+                    <th:block th:if="${adminList.next}">
+                        <li class="page-item">
+                            <a th:href="@{/admin/adminManage(page=${adminList.nextPage}, size=${adminList.pageRequestDTO.size}, state=${currentState})}" class="page-link">Next</a>
+                        </li>
+                    </th:block>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <!-- JS 파일 추가 -->
+    <script src="/js/jquery-3.7.1.min.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="/js/admin/adminManage/adminList.js"></script>
+</body>
+</html>

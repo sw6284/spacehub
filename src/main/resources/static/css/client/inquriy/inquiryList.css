@@ -1,0 +1,49 @@
+/* 기본 테이블 스타일 */
+.table {
+    width: 100%;
+    table-layout: auto;  /* 열의 크기가 자동으로 조정되도록 설정 */
+    border-collapse: collapse;
+}
+
+.table th, .table td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+/* 글번호 열 - 기본은 분류와 동일한 너비로 설정하되, 자릿수에 따라 확장 */
+.inquiry-no-col {
+    min-width: 80px; /* 기본 분류 열과 동일한 크기 */
+    width: auto;     /* 자릿수에 따라 자동 확장 */
+    max-width: 120px; /* 글번호의 최대 너비 제한 */
+    word-wrap: break-word;
+    white-space: nowrap;
+}
+
+/* 글제목 열 - 기본보다 길게 설정 */
+.goDetail {
+    min-width: 300px;  /* 글제목의 최소 너비 */
+    max-width: 500px;  /* 글제목의 최대 너비 */
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;  /* 제목이 길 경우 생략 부호(...) 처리 */
+}
+
+/* 테이블 헤더 스타일 */
+.table thead th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+}
+
+/* 상태별 텍스트 색상 */
+.state-waiting {
+    color: blue;   /* 답변대기일 때 파란색 */
+    font-weight: bold; /* 강조 효과 */
+}
+
+.state-done {
+    color: red;    /* 답변완료일 때 빨간색 */
+    font-weight: bold; /* 강조 효과 */
+}
+	

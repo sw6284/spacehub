@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <th:block th:insert="~{template/client/fragments/block :: config}"></th:block>
+    <title>문의게시판 상세</title>
+    <link rel="stylesheet" href="/css/client/inquiry/inquiryDetail.css">
+    <link href="/css/client/button.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <th:block th:insert="~{template/client/fragments/block :: header}"></th:block>
+    
+    <div class="container my-3" th:object="${detail}">
+        <div class="text-center my-4">
+            <h3>게시판 상세</h3>
+        </div>
+
+        <!-- 숨겨진 입력 필드 -->
+        <form id="dataForm">
+            <input type="hidden" name="inqNo" id="inqNo" th:value="${detail.inqNo}"/> <!-- inqNo를 숨겨진 필드로 저장 -->
+        </form>
+
+        <!-- 작성자 정보 -->
+        <div class="row mb-4">
+            <label class="col-md-3 col-form-label">작성자</label>
+            <div class="col-md-9" th:text="${detail.member.memberName}"></div>
+        </div>
+
+        <!-- 작성일 -->
+        <div class="row mb-4">
+            <label class="col-md-3 col-form-label">작성일</label>
+            <div class="col-md-9" th:text="${#temporals.format(detail.inqDate, 'yyyy-MM-dd HH:mm:ss')}"></div>
+        </div>
+
+        <!-- 제목 -->
+        <div class="row mb-4">
+            <label class="col-md-3 col-form-label">제목</label>
+            <div class="col-md-9" th:text="${detail.inqTitle}"></div>
+        </div>
+
+        <!-- 내용 -->
+        <div class="row mb-4">
+            <label class="col-md-3 col-form-label">내용</label>
+            <div class="col-md-9" th:utext="${#strings.replace(detail.inqContent, newLine, '&lt;br /&gt;')}"></div>
+        </div>
+
+        <!-- 버튼 영역 -->
+        <div class="row mb-4">
+            <div class="col-md-12 text-end">
+                <div th:if="${detail.member.memberNo == loggedInMemberNo}">
+                    <button type="button" id="inquiryDeleteBtn" class="btn btn-danger">삭제</button>
+                    <button type="button" id="updateFormBtn" class="btn btn-primary">글수정</button>
+                	<button type="button" id="cancelFormBtn" class="btn btn-second">목록</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 답변 리스트 -->
+        <div class="container my-3" th:object="${detail}">
+            <div id="answerInquiryList" class="my-4">
+
+            <!-- 템플릿 요소 (보이지 않도록 숨겨둠) -->
+           
+            <input type="hidden" name="ansNo" id="ansNo" th:value="${ansNo}"/>
+            </div>
+            <div id="item-template">
+                <div class="answerText p-3 mb-3 bg-light rounded shadow-sm">
+                    <div class="name font-weight-bold mb-1"></div>
+                    <div class="cdate text-muted mb-2"></div>
+                    <div class="card-text"></div>
+                </div>
+            </div>
+        </div>
+    
+    <script src="/js/jquery-3.7.1.min.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="/js/client/inquiry/DetailForm.js"></script>
+</body>
+</html>

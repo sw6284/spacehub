@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpaceHub</title>
+    
+    <script src="/js/jquery-3.7.1.min.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="/js/client/mypage/userProfile.js"></script>
+</head>
+<body>
+    <h1>마이페이지</h1>
+    <!-- 로그인된 경우 회원 정보 표시 -->
+    <div th:if="${isLoggedIn}">
+        <div id="profile">
+            <p>이름: <span id="memberName" th:text="${member.memberName}"></span></p>
+            <p>아이디: <span id="memberId" th:text="${member.memberId}"></span></p>
+            <p>이메일: <span id="memberEmail" th:text="${member.memberEmail}"></span></p>
+            <p>전화번호: <span id="memberPhone" th:text="${member.memberPhone}"></span></p>
+            <p>가입일자: <span id="memberCreatedAt" th:text="${member.memberCreatedAt}"></span></p>
+        </div>
+    </div>
+</body>
+</html>

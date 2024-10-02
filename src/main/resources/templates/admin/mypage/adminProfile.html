@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" class="h-100" data-bs-theme="auto">
+<head>
+	<th:block th:insert="~{template/admin/fragments/adminNav :: config}"></th:block>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpaceHub 관리자</title>
+    <link rel="stylesheet" href="/css/admin/mypage/adminProfile.css">
+</head>
+	
+<body>
+    <div class="wrapper">
+        <!-- 왼쪽 네비게이션 (공통) -->
+        <div class="mb-auto">
+	        <th:block th:insert="~{template/admin/fragments/adminNav :: admin-nav}"></th:block>
+	    </div>
+	    <div class="main-content">
+		    <div th:if="${isLoggedIn}">
+		        <div id="profile">
+		            <p>이름: <span th:text="${admin.admName}"></span></p>
+		            <p>아이디: <span th:text="${admin.admId}"></span></p>
+		            <p>이메일: <span th:text="${admin.admEmail}"></span></p>
+		            <p>전화번호: <span th:text="${admin.admPhone}"></span></p>
+		            <p>입사일자: <span th:text="${formattedDate}"></span></p>
+		        </div>
+		
+		        <div class="buttons">
+		            <button class="btn-second" type="button" id="adminProfileUpdateFormBtn">개인정보 수정</button>
+		        </div>
+		    </div>
+	    </div>
+	</div>
+
+    <script src="/js/jquery-3.7.1.min.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="/js/admin/mypage/adminProfile.js"></script>
+</body>
+</html>

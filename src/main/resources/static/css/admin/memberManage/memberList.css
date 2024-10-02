@@ -1,0 +1,116 @@
+.wrapper {
+    display: flex;
+    height: 100vh;
+    background-color: #f8f9fa;
+}
+
+/* 메인 콘텐츠 스타일 */
+.main-content {
+    flex: 1;
+    padding: 20px;
+    margin: 0 auto;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    overflow-y: auto; /* 콘텐츠가 많을 경우 스크롤 가능 */
+}
+
+/* 드롭다운 스타일 및 정렬 */
+#status-filter {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+    width: 200px;
+    margin-bottom: 20px; /* 드롭다운과 테이블 사이 여백 추가 */
+}
+
+/* 테이블 컨테이너 */
+.table-container {
+    max-width: 100%; /* 부모 요소의 너비를 기준으로 설정 */
+    overflow-x: auto; /* 가로 스크롤 추가 */
+    margin-bottom: 20px; /* 테이블과 페이징 사이 여백 추가 */
+}
+
+/* 테이블 스타일 */
+table {
+	padding: 10px;
+    width: 100%;
+    border: 40px;
+    border-collapse: collapse;
+    background-color: #fff;
+    margin: 0 auto; /* 테이블을 중앙 정렬 */
+}
+
+th, td {
+    padding: 20px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+	text-align: center;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* .hidden 클래스 스타일 */
+.hidden { 
+    display: none; 
+}
+
+/* .goDetail 클래스 스타일 */
+.goDetail {
+    cursor: default;
+    color: inherit;
+    text-decoration: none;
+}
+
+.goDetail:hover {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* 페이징 스타일 */
+.pagination {
+    display: flex;
+    justify-content: center; /* 중앙 정렬 */
+    padding: 0;
+    margin: 20px 0; /* 여백 추가 */
+    list-style: none;
+}
+
+.page-item {
+    margin: 0 5px;
+}
+
+.page-link {
+    display: block;
+    padding: 10px 15px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    color: #007bff;
+    text-decoration: none;
+    text-align: center;
+    font-size: 16px;
+}
+
+.page-item.disabled .page-link {
+    color: #6c757d;
+    cursor: not-allowed;
+}
+
+.page-item.active .page-link {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}

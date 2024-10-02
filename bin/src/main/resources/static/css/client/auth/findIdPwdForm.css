@@ -1,0 +1,98 @@
+/* 일반 스타일 */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+/* 컨테이너 스타일 */
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+/* 탭 스타일 */
+.tabs {
+    display: flex;
+    border-bottom: 2px solid #ddd;
+    margin-bottom: 20px;
+}
+
+.tab-button {
+    flex: 1; /* 버튼이 부모 컨테이너의 가로폭을 꽉 채우도록 설정 */
+    padding: 15px 0; /* 버튼의 상하 패딩 조정 */
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-bottom: none;
+    background-color: #f0f0f0; /* 기본 배경 색상 */
+    color: #333; /* 기본 텍스트 색상 */
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s, color 0.3s;
+    margin: 0; /* 버튼 사이의 간격 제거 */
+}
+
+.tab-button:hover {
+    background-color: #e0e0e0; /* 기본 호버 배경 색상 */
+}
+
+.tab-button.active {
+    background-color: #007BFF; /* 기본 활성화 배경 색상 */
+    color: #fff; /* 활성화 텍스트 색상 */
+    border: 1px solid #007BFF; /* 활성화 버튼 테두리 색상 */
+    border-bottom: none;
+}
+
+/* 탭 콘텐츠 스타일 */
+.tab-content {
+    border: 1px solid #ddd;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 4px;
+}
+
+/* 폼 요소 스타일 */
+label {
+    display: block;
+    margin: 10px 0 5px;
+    font-size: 14px;
+}
+
+input {
+    width: calc(100% - 20px);
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+button {
+    padding: 12px 24px; /* 버튼 패딩 조정 */
+    cursor: pointer;
+    background-color: #007BFF; /* 기본 버튼 배경 색상 */
+    color: white; /* 기본 버튼 텍스트 색상 */
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+button:hover {
+    background-color: #0056b3; /* 버튼 호버 배경 색상 */
+}
+
+/* 폼 액션 버튼 중앙 정렬 */
+.form-actions {
+    display: flex;
+    justify-content: center; /* 버튼을 중앙 정렬 */
+    margin-top: 30px;
+}

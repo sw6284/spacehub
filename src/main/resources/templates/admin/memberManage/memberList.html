@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" class="h-100" data-bs-theme="auto">
+<head>
+    <th:block th:insert="~{template/admin/fragments/adminNav :: config}"></th:block>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpaceHub 관리자</title>
+    <link rel="stylesheet" href="/css/admin/memberManage/memberList.css">
+</head>
+<body>
+    <div class="wrapper">
+        <!-- 왼쪽 네비게이션 (공통) -->
+        <nav class="nav">
+            <th:block th:insert="~{template/admin/fragments/adminNav :: admin-nav}"></th:block>
+        </nav>
+        
+        <!-- 메인 콘텐츠 -->
+        <div class="main-content">
+            <h1>회원 관리</h1>
+            
+            <div id="memberSearch" class="my-2">
+                <form id="searchForm" method="get" action="/admin/memberManage">
+                    <input type="hidden" name="page" id="page" th:value="${memberList.current}">
+                    <input type="hidden" name="size" id="size" th:value="${memberList.pageRequestDTO.size}">
+                    <input type="hidden" name="state" id="hiddenState" th:value="${currentStatus}">
+                </form>
+
+                <select id="status-filter" name="state">
+                    <option value="all" th:selected="${currentStatus == 'all'}">All</option>
+                    <option value="active" th:selected="${currentStatus == 'active'}">Active</option>
+                    <option value="delete" th:selected="${currentStatus == 'delete'}">Delete</option>
+                </select>
+
+            </div>
+    
+            <div class="member-table-height">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr class="text-center">
+                            <th class="col-md-1">No</th>
+                            <th class="col-md-4">아이디</th>
+                            <th class="col-md-2">이름</th>
+                            <th class="col-md-3">이메일</th>
+                            <th class="col-md-1">상태</th>
+                        </tr>
+                    </thead>
+                    <tbody id="memberTableBody">
+                        <tr th:if="${#lists.size(memberList.dtoList) == 0}">
+                            <td colspan="5" class="text-center">등록된 회원이 존재하지 않습니다.</td>
+                        </tr>
+                        <th:block th:if="${not #strings.isEmpty(memberList.dtoList)}">
+                            <tr th:each="member : ${memberList.dtoList}" 
+                                th:attr="data-member-no=${member.memberNo}, data-member-id=${member.memberId}, data-member-email=${member.memberEmail}, data-status=${member.memberState}">
+                                <td th:text="${member.memberNo}">No</td>
+                                <td class="memberId" th:text="${member.memberId}">ID</td>
+                                <td class="goDetail" th:text="${member.memberName}">Name</td>
+                                <td class="memberEmail" th:text="${member.memberEmail}">Email</td>
+                                <td th:text="${member.memberState}">Status</td>
+                            </tr>
+                        </th:block>
+                    </tbody>
+                </table>
+            </div>
+
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <!-- 이전 페이지 버튼 -->
+                    <th:block th:if="${memberList.prev}">
+                        <li class="page-item">
+                            <a th:href="@{/admin/memberManage(page=${memberList.prevPage}, state=${currentStatus})}" class="page-link">Previous</a>
+                        </li>
+                    </th:block>
+            
+                    <!-- 페이지 번호 출력 -->
+                    <li th:each="number : ${memberList.pageNumList}" th:classappend="'page-item ' + ${(memberList.current == number) ? 'active' : ''}">
+                        <a th:href="@{/admin/memberManage(page=${number}, state=${currentStatus})}" class="page-link" th:text="${number}"></a>
+                    </li>
+            
+                    <!-- 다음 페이지 버튼 -->
+                    <th:block th:if="${memberList.next}">
+                        <li class="page-item">
+                            <a th:href="@{/admin/memberManage(page=${memberList.nextPage}, state=${currentStatus})}" class="page-link">Next</a>
+                        </li>
+                    </th:block>
+                </ul>
+            </nav>
+
+        </div>
+    </div>
+    
+    <script src="/js/jquery-3.7.1.min.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="/js/admin/memberManage/memberList.js"></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpaceHub</title>
+	<link rel="stylesheet" href="/css/client/auth/findIdResult.css">
+
+</head>
+<body>
+    <div class="container">
+        <p>고객님의 아이디는 <span th:text="${memberId}">[아이디]</span>입니다.</p>
+        <div class="form-actions">
+            <button type="button" id="findIdPwdBtn">비밀번호 찾기</button>
+            <button type="button" id="loginFormBtn">로그인 화면으로 이동</button>
+        </div>
+    </div>
+    
+    <script src="/js/jquery-3.7.1.min.js"></script>
+    <script src="/js/common.js"></script>
+    <script>
+	    $("#findIdPwdBtn").on("click", function(){
+	        locationProcess("/auth/findIdPwdForm");
+	    });
+	
+	    $("#loginFormBtn").on("click", function(){
+	        locationProcess("/auth/login");
+	    });
+    </script>
+</body>
+</html>

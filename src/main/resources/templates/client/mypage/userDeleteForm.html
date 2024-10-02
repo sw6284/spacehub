@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" class="h-100" data-bs-theme="auto">
+<head>
+    <th:block th:insert="~{template/client/fragments/block :: config}"></th:block>
+    <meta name="theme-color" content="#712cf9">
+    <title>SpaceHub</title>
+    <link href="/css/client/main.css" rel="stylesheet">
+    <link rel="canonical" href="https://getbootstrap.kr/docs/5.3/examples/cover/">
+    <style type="text/css">
+    /* 일반 스타일 */
+		body {
+		    font-family: Arial, sans-serif;
+		    margin: 0;
+		    padding: 0;
+		    background-color: #fff;
+		    display: flex;
+		    flex-direction: column;
+		}
+		
+		h1 {
+		    margin-top: 20px;
+		}
+		
+		/* 컨테이너 스타일 */
+		#container-pwdChk {
+		 	min-height: 460px;	
+		    max-width: 600px;
+		    margin: 30px auto;
+			text-align: center;
+		    margin-bottom: 50px;
+		    padding: 20px;
+		    background-color: #fff;
+		    box-sizing: border-box;
+		}
+		
+		#container-pwdChk h1 {
+			margin: 20px;
+		}
+		
+		#container-pwdChk input {
+			margin: 10px;
+			padding: 8px 20px; /* 약간 더 큰 여백으로 설정 */
+		}
+    </style>
+</head>
+<body class="d-flex flex-column h-100">
+    <header th:insert="~{template/client/fragments/block :: header}"></header>
+    <main class="flex-shrink-0 mt-5">
+    	<div id="container-pwdChk">
+			<h1>비밀번호 확인 및 계정 삭제</h1>
+		    <form id="deleteAccountForm" method="post">
+		        <input type="password" id="password" name="password" required>
+		        <button class="btn-danger" type="button" id="deleteAccountButton">계정 삭제</button>
+		    </form>
+		</div>
+	</main>
+	
+	<footer th:insert="~{template/client/fragments/block :: footer}" class="mt-auto"></footer>
+    
+    <script src="/js/jquery-3.7.1.min.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="/js/client/mypage/userDeleteForm.js"></script> 
+</body>
+</html>

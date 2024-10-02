@@ -1,0 +1,64 @@
+.wrapper {
+    display: flex;
+    height: 100vh;
+    background-color:  #f8f9fa;
+	color: black;
+}
+
+/* 메인 콘텐츠 스타일 */
+.container {
+    padding: 20px;
+    max-width: 1200px; /* 사용자 페이지와 동일한 너비 설정 */
+    margin: 0 auto; /* 중앙 정렬 */
+}
+
+h2 {
+    text-align: center; /* 제목 중앙 정렬 */
+    margin-top: 0;
+}
+
+.dashboard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.card {
+	color: black;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    flex: 1;
+    min-width: 300px; /* 카드 최소 너비 설정 */
+    text-align: center; /* 카드 내용 중앙 정렬 */
+}
+
+.card h3 {
+    margin: 0 0 10px;
+    font-size: 18px;
+}
+
+.card p {
+    margin: 0;
+    font-size: 16px;
+}
+
+.inquiry-list, .popular-spaces {
+    list-style-type: none;
+    padding: 0;
+    text-align: left; /* 리스트는 왼쪽 정렬 유지 */
+}
+
+.inquiry-list li, .popular-spaces li {
+    margin-bottom: 10px;
+    padding: 5px;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+}
+
+ #dateArea {
+        display: none; /* 처음에는 숨김 */
+    }

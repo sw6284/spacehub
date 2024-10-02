@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpaceHub 관리자 로그인</title>
+    <link rel="stylesheet" href="/css/client/auth/userLoginForm.css">
+</head>
+<body>
+    <div class="container">
+        <div class="login-container">
+            <div class="image-placeholder">
+                <img src="/image/login_image.jpg">
+            </div>
+            <div class="login-form">
+                <h2>SpaceHub<br>관리자 로그인</h2>
+                <form id="loginForm">
+                    <input type="text" id="admId" name="admId" placeholder="아이디" required>
+                    <br>
+                    <input type="password" id="admPasswd" name="admPasswd" placeholder="비밀번호" required>
+                    <br>
+                    <button type="button" class="login-btn" id="login-btn">로그인</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript 파일 링크 -->
+    <script src="/js/jquery-3.7.1.min.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="/js/admin/auth/adminLoginForm.js"></script>
+</body>
+</html>

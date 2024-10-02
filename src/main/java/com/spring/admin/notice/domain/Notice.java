@@ -10,6 +10,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -55,4 +57,14 @@ public class Notice {
     @Column(name = "nb_hit", nullable = false)
     @ColumnDefault(value = "0")
     private int nbHit = 0;
+    
+    @PrePersist
+    protected void onCreate() {
+        this.nbDate = LocalDateTime.now(); // 글 작성 시 현재 시간으로 설정
+    }
+    
+    @PreUpdate
+    protected void onUpdate() {
+        this.nbUpdate = LocalDateTime.now(); // 글 수정 시 현재 시간으로 설정
+    }
 }

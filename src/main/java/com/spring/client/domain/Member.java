@@ -25,7 +25,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @Entity
 @Table(name = "SPACEHUB_MEMBER")
-@SequenceGenerator(name = "spacehub_member_generator", sequenceName = "spacehub_member_seq", initialValue = 1, allocationSize = 1)
+@SequenceGenerator(name = "spacehub_member_generator", sequenceName = "spacehub_member_seq", initialValue = 4, allocationSize = 1)
 public class Member {
 
     @Id
@@ -39,7 +39,7 @@ public class Member {
     @Column(name = "member_id", length = 15)
     private String memberId;
 
-    @Column(name = "member_passwd", length = 15, nullable = false)
+    @Column(name = "member_passwd", length = 15)
     private String memberPassword;
 
     @Column(name = "member_email", length = 30)
@@ -54,8 +54,7 @@ public class Member {
     @Column(name = "kakao_id", length = 20)
     private String kakaoId;
 
-    @CreationTimestamp
-    @Column(name = "kakao_connent_at")
+    @Column(name = "kakao_connect_at")
     private LocalDateTime kakaoConnectAt;
 
     @CreationTimestamp
@@ -63,7 +62,6 @@ public class Member {
     @ColumnDefault(value = "sysdate")
     private LocalDateTime memberCreatedAt;
 
-    @CreationTimestamp
     @Column(name = "member_update_at")
     private LocalDateTime memberUpdateAt;
 }

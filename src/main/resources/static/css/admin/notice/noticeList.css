@@ -1,0 +1,136 @@
+.wrapper {
+    display: flex;
+    height: 100vh;
+    background-color: #f8f9fa;
+}
+
+/* 제목 스타일 */
+.main-content h2 {
+    text-align: left; /* 제목 왼쪽 정렬 */
+    margin-bottom: 20px; /* 제목과 콘텐츠 간의 여백 조정 */
+}
+
+
+/* 메인 콘텐츠 스타일 */
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-sizing: border-box;
+    overflow-y: auto; /* 콘텐츠가 많을 경우 스크롤 가능 */
+}
+
+/* 공지사항 목록 스타일 */
+.faq-list {
+    width: 70%;
+    margin: 20px auto; /* 수평 가운데 정렬을 위해 auto 사용 */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 제목 스타일 */
+.heading {
+    font-size: 24px; /* 제목 크기 조정 */
+    margin-bottom: 20px; /* 제목과 콘텐츠 간의 여백 조정 */
+}
+
+/* 공지사항 아이템 스타일 */
+.notice-item {
+    margin-bottom: 10px; /* 아래 여백을 줄여서 공지사항 간격을 좁힘 */
+    background-color: #f1f1f1;
+    width: 100%; /* 아이템의 너비를 100%로 설정 */
+}
+
+/* 질문 버튼 (제목 클릭 부분) */
+.question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    background-color: #f1f1f1;
+    border: 1px solid #f1f1f1;
+    border-radius: 8px;
+    padding: 10px; /* 패딩을 줄여서 공간을 절약 */
+    font-size: 16px; /* 글씨 크기를 줄임 */
+    transition: background-color 0.3s ease;
+}
+
+/* 답변 부분 */
+.answer {
+    padding: 10px; /* 패딩을 줄여서 공간을 절약 */
+    border-top: 1px solid #ddd;
+    background-color: #f9f9f9;
+    display: none;
+}
+
+/* 버튼 스타일 */
+.button {
+    display: inline-block;
+    padding: 8px 16px; /* 패딩을 줄여서 버튼 크기 조정 */
+    margin: 5px;
+    border-radius: 8px;
+    color: #FFD700; /* 노란색 글씨 */
+    background-color: #fff; /* 흰색 배경 */
+    border: 2px solid #FFD700;
+    font-size: 14px; /* 글씨 크기를 줄임 */
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #001f3f; /* 네이비 배경 */
+    color: #FFD700; /* 노란색 글씨 유지 */
+}
+
+/* 페이지네이션 스타일 */
+.pagination {
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: 20px 0;
+    list-style: none;
+}
+
+.page-item {
+    margin: 0 3px; /* 여백을 줄여서 페이지 버튼 간격 조정 */
+}
+
+.page-link {
+    display: block;
+    padding: 8px 12px; /* 패딩을 줄여서 버튼 크기 조정 */
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    color: #007bff;
+    text-decoration: none;
+    text-align: center;
+    font-size: 14px; /* 글씨 크기를 줄임 */
+}
+
+.page-item.disabled .page-link {
+    color: #6c757d;
+    cursor: not-allowed;
+}
+
+.page-item.active .page-link {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}
+
+.page-link:hover {
+    background-color: #e9ecef;
+    color: #007bff;
+}
+
+/* 공지사항 메타데이터 스타일 */
+.notice-meta {
+    display: block;
+    font-size: 0.75em; /* 글씨 크기를 더 줄임 */
+    color: #666;
+    margin-top: 5px; /* 위쪽 여백을 줄임 */
+}

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <th:block th:insert="~{template/client/fragments/block :: config}"></th:block>
+    <title>문의 작성</title>
+     <link rel="stylesheet" href="/css/client/inquiry/inquiryList.css">
+     <link href="/css/client/button.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+   
+</head>
+<body>
+
+<th:block th:insert="~{template/client/fragments/block :: header}"></th:block>
+
+    <div class="container">
+        <h2>문의 작성</h2>
+        <form id="insertForm" th:object="${inquiry}" action="/inquiry/insert" method="post">
+            <div class="header">
+                <!-- 카테고리 선택 -->
+                <div class="form-group">
+                    <label for="inqCate">카테고리 선택</label>
+                    <select id="inqCate" th:field="*{inqCate}" class="form-select">
+                        <option value="">카테고리 선택</option>
+                        <option value="예약문의">예약문의</option>
+                        <option value="결제문의">결제문의</option>
+                        <option value="사용문의">사용문의</option>
+                    </select>
+                </div>
+
+                <!-- 사용자 번호 숨김 -->
+                <input type="hidden" id="memberNo" th:value="*{member.memberNo}" name="member.memberNo">
+                                
+                <!-- 작성자 이름 표시 -->
+                <div class="form-group">
+                    <label for="memberName">작성자명</label>
+                    <input type="text" id="memberName" th:value="*{member.memberName}" class="form-control" disabled>
+                </div>
+
+                <!-- 제목 입력 -->
+                <div class="form-group">
+                    <label for="inqTitle">제목</label>
+                    <input type="text" id="inqTitle" th:field="*{inqTitle}" placeholder="제목을 입력하세요" class="form-control">
+                </div>
+
+                <!-- 비밀글 체크박스 -->
+                <div class="form-group">
+                    <label for="inqSecret">
+                        <input type="checkbox" id="inqSecret" th:field="*{inqSecret}" class="form-check-input"> 비밀글
+                    </label>
+                </div>
+            </div>
+
+            <!-- 비밀번호 입력 (비밀글일 경우) -->
+            <div class="form-group" id="passwordSection">
+                <label for="inqPassword">비밀번호 (4자리 이상)</label>
+                <input type="password" id="inqPassword" th:field="*{inqPassword}" placeholder="비밀번호를 입력하세요" class="form-control">
+                <span id="passwordLengthMessage" style="color: red; display: none;">비밀번호는 4자리 이상이어야 합니다.</span>
+            </div>
+            
+            <!-- 설정 버튼 -->
+            <div class="form-group" id="passwordButtonSection">
+                <button type="button" id="passwordFormBtn" class="btn btn-primary btn-sm mb-2">설정</button>
+            </div>
+
+            <div class="body">
+               <!-- 문의글 입력 -->
+				<div class="form-group">
+				    <label for="inqContent">문의 내용</label>
+				    <textarea id="inqContent" th:field="*{inqContent}" placeholder="문의글을 입력하세요" class="form-control" rows="10"></textarea>
+					
+				</div>
+            </div>
+				
+            <div class="text-end">
+                <!-- 버튼들 -->
+                <button type="reset" id="resetFormBtn" class="btn btn-primary btn-sm mb-2">초기화</button>
+                <button type="submit" id="saveFormBtn" class="btn btn-primary btn-sm mb-2">작성완료</button>
+                <button type="button" id="cancelFormBtn" class="btn btn-secondary btn-sm mb-2" onclick="window.location.href='/inquiry/inquiryList'">취소</button>
+            </div>
+        </form>
+    </div>
+    
+    <!-- 추가 스크립트 -->
+    <script src="/js/jquery-3.7.1.min.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="/js/client/inquiry/insertForm.js"></script>
+</body>
+</html>

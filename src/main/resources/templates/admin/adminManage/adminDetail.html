@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" class="h-100" data-bs-theme="auto">
+<head>
+	<th:block th:insert="~{template/admin/fragments/adminNav :: config}"></th:block>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpaceHub 관리자</title>
+    <link rel="stylesheet" href="/css/admin/memberManage/memberDetail.css">
+</head>
+<body>
+    <div class="wrapper">
+        <!-- 왼쪽 네비게이션 (공통) -->
+        <div class="mb-auto">
+	        <th:block th:insert="~{template/admin/fragments/adminNav :: admin-nav}"></th:block>
+	    </div>
+	    <div class="main-content">
+	        <!-- 관리자 정보를 찾을 수 없는 경우 -->
+	        <div th:if="${!state}">
+			    <p th:text="${message}"></p>
+			</div>
+	
+	        <!-- 관리자 정보를 찾을 수 있는 경우 -->
+	        <div th:if="${state}">
+	        	<div id="detail">
+            		<h1>관리자 상세 정보</h1>
+					<p>관리자번호: <span th:text="${admin.admNo}"></span></p>
+		            <p>아이디: <span id="admId" th:text="${admin.admId}"></span></p>
+		            <p>이름: <span th:text="${admin.admName}"></span></p>
+		            <p>이메일: <span id="admEmail" th:text="${admin.admEmail}"></span></p>
+		            <p>전화번호: <span id="admPhone" th:text="${admin.admPhone}"></span></p>
+		            <p>입사일자: <span th:text="${formattedDate_create}"></span></p>
+		            <p>재직상태: <span th:text="${admin.admState}"></span></p>
+		            <p>퇴사일자:<span th:text="${formattedDate_update}"></span></p>
+	            </div>
+	            <div class="buttons">
+				    <button type="button" class="btn-second" id="adminListBtn">목록</button>
+				    <th:block th:if="${admin.admState != 'delete'}">
+					    <button type="button" class="btn-danger" id="adminDeleteBtn">관리자 삭제</button>
+					</th:block>
+				</div>
+	        </div>
+		</div>
+    </div>
+        
+    <script src="/js/jquery-3.7.1.min.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="/js/admin/adminManage/adminDetail.js"></script>
+</body>
+</html>

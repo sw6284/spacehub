@@ -1,0 +1,118 @@
+/* primary 흰색 - 진한파랑 / 노란글씨 */
+.btn-primary {
+    display: inline-block;
+    padding: 10px 25px;
+    background-color: #F7F7F7;
+    border-radius: 8px;
+    color: #FFB347;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 18px;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.5;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #003366;
+}
+
+/* second 노랑 - 하늘색 */
+.btn-second {
+	display: inline-block;
+    padding: 12px 30px;
+    background-color: #FFB347;
+    border-radius: 8px; 
+    color: #F7F7F7; 
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    font-family: 'Arial', sans-serif;
+    line-height: 1.5;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.3s ease; 
+    border: none;
+    cursor: pointer;
+}
+
+.btn-second:hover {
+    background-color: #4975af;
+    color: #FFFFFF;
+    transform: scale(1.05);
+}
+
+/* success 노랑 - 주황 */
+.btn-success {
+	display: inline-block;
+    padding: 12px 30px;
+    background-color: #FFB347;
+    border-radius: 8px; 
+    color: #F7F7F7; 
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    font-family: 'Arial', sans-serif;
+    line-height: 1.5;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.3s ease; 
+    border: none;
+    cursor: pointer;
+}
+
+.btn-success:hover {
+    background-color: #FF6600;
+    color: #FFFFFF;
+    transform: scale(1.05);
+}
+
+/* danger 노랑 - 진한 파란색 */
+.btn-danger {
+	display: inline-block;
+    padding: 12px 30px;
+    background-color: #FFB347;
+    border-radius: 8px; 
+    color: #F7F7F7; 
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    font-family: 'Arial', sans-serif;
+    line-height: 1.5;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* 배경색과 transform 애니메이션 유지 */
+    border: none;
+    cursor: pointer;
+}
+
+.btn-danger:hover {
+    background-color: #003366;
+    color: #FFFFFF;
+    transform: scale(1.05);
+}
+
+/* accent 하늘색 - 진한 파란색 */
+.btn-accent {
+	display: inline-block;
+    padding: 12px 30px;
+    background-color: #4975af;
+    border-radius: 8px; 
+    color: #F7F7F7; 
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    font-family: 'Arial', sans-serif;
+    line-height: 1.5;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.3s ease; 
+    border: none;
+    cursor: pointer;
+}
+
+.btn-accent:hover {
+    background-color: #003366;
+    color: #FFFFFF;
+    transform: scale(1.05);
+}
+

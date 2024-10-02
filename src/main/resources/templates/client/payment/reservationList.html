@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" class="h-100"
+	data-bs-theme="auto">
+<head>
+<link href="/assets/dist/css/bootstrap.min.css" rel="stylesheet" />
+<th:block th:insert="~{template/client/fragments/block :: config}"></th:block>
+<meta name="theme-color" content="#712cf9">
+<link href="/css/client/payment/reservationDetail.css" rel="stylesheet">
+
+</head>
+<body class="d-flex flex-column h-100">
+    	<header th:insert="~{template/client/fragments/block :: header}"></header>
+		<div class="container mt-4">
+			<h1 style="text-align: center;">예약 목록</h1>
+
+			<!-- 예약 목록이 있을 경우 표시 -->
+			<div th:if="${reservation != null and !reservation.isEmpty()}">
+				<div th:each="reservation, iterStat : ${reservation}" class="list">
+					<!-- 예약 기본 정보 행 -->
+					<div class="clickable" th:data-no="'btn-' + ${reservation.resNo}">
+						<span class="resName" th:text="${reservation.resName}"></span> - <span
+							th:text="${reservation.spNo.spName}"></span> - <span
+							th:text="*{#temporals.format(reservation.resStartTime, 'yyyy-MM-dd HH:mm')}"></span>
+						<div class="reservation-status">
+							<strong>예약 상태:</strong> <span th:text="${reservation.resState}"></span>
+						</div>
+					</div>
+
+					<!-- 숨겨진 상세 정보 (처음에는 숨김 처리) -->
+					<div id="details-[[${iterStat.index}]]" class="details"
+						th:data-no="'detail-' + ${reservation.resNo}">
+						<div>
+							<strong>입실 시간:</strong> <span 
+								th:text="*{#temporals.format(reservation.resStartTime, 'yyyy-MM-dd HH:mm')}"></span>
+						</div>
+						<div>
+							<strong>퇴실 시간:</strong> <span class="endTime"
+								th:text="${endTimeMap[reservation.resNo]}"></span>
+						</div>
+						<div>
+							<strong>인원수:</strong> <span  th:text="${reservation.resPersonnel}"></span>
+						</div>
+						<div>
+							<strong>총 금액:</strong> <span class="totalAmount" th:text="${reservation.resAmount}"></span>
+						</div>
+
+
+						<!-- 버튼 영역 (결제 완료 상태에서 취소 가능하거나 결제 대기 상태일 때만 표시) -->
+						<div class="button-area"
+							th:if="${(reservation.resState == '결제완료' and isCancellableMap[reservation.resNo]) or (reservation.resState == '결제대기')}">
+
+							<!-- 결제 완료 상태일 때 취소 버튼 (입실 시간이 지나지 않았으면) -->
+							<button
+								th:if="${reservation.resState == '결제완료' and isCancellableMap[reservation.resNo]}"
+								type="button" class="btn btn-danger">결제 취소</button>
+
+							<!-- 결제 대기 상태일 때 결제하기 버튼 -->
+							<form id="'resNo">
+								<input type="hidden" th:value="${reservation.resNo}" />
+							</form>
+							<button th:if="${reservation.resState == '결제대기'}" type="button"
+								class="btn dbtn-primary">결제하기</button>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+
+			<!-- 예약 목록이 없을 경우 표시할 메시지 -->
+			<div th:if="${reservation == null or reservation.isEmpty()}">
+				<p style="text-align: center;">예약 정보가 없습니다.</p>
+			</div>
+		</div>
+
+	<!-- Scripts -->
+
+	<script src="https://cdn.portone.io/v2/browser-sdk.js"></script>
+	<script src="/js/jquery-3.7.1.min.js"></script>
+	<script src="/js/common.js"></script>
+	<script src="/js/client/payment/reservationList.js"></script>
+	<script>
+	$(document).ready(function() {
+	    $(".dbtn-primary").on("click", function() {
+	        var form = $(this).siblings('form');
+	        var resNo = form.find('input[type="hidden"]').val();
+
+	        $.ajax({
+	            type: "POST",
+	            url: "/reservation/orders",
+	            contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+	            data: {
+	                resNo: resNo
+	            },
+	            success: function(response) {
+	                // 서버가 반환한 URL로 페이지 리다이렉트
+	                console.log("Redirect URL:", response);  // URL 확인용 로그
+	                window.location.href = response;  // 성공 시 받은 URL로 리다이렉트
+	            },
+	            error: function(error) {
+	                console.log("Error occurred: ", error);
+	            }
+	        });
+	    });
+	});
+</script>
+</body>
+</html>

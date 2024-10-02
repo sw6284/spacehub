@@ -13,6 +13,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
@@ -52,10 +53,17 @@ public class Inquiry {
     @Column(name = "inq_update")
     private LocalDateTime inqUpdate;
 
+    
+    /* 게시글 상태(작성중/작성완료) : 작성중 아예 없앰 */
     @Column(name = "inq_state", length = 15, nullable = false)
-    private String inqState;
+    private String inqState = "답변대기"; 
+    
+    /*
+    @Column(name = "inq_state", length = 15, nullable = false)
+    private String inqState = "default_state";  // 기본값 설정 */
 
-    @Column(name = "inq_content", length = 255, nullable = false)
+    //@Lob									
+    @Column(length = 1000, nullable = false)
     private String inqContent;
 
     @Column(name = "inq_data")

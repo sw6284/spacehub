@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:insert="~{template/client/fragments/block :: config}"></th:block>
+    <meta charset="UTF-8">
+    <link href="/css/client/space/spaceList.css" rel="stylesheet">
+    <link href="/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="/css/client/button.css" rel="stylesheet">
+    <title>SpaceHub - 공간리스트</title>
+</head>
+
+<body>
+    <th:block th:insert="~{template/client/fragments/block :: header}"></th:block>
+
+    <div class="container my-4">
+        <div class="text-center mb-4">
+            <h2>공간 대여 리스트</h2>
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-3 g-3" id="List">
+        
+	        <!-- 공간정보가 없을 때 -->
+	        <div th:if="${spaceList == null or spaceList.isEmpty()}">
+	            <p>등록된 공간이 없습니다.</p>
+	        </div>
+	        
+	        <!-- 공간정보가 없을 때 -->
+	        <div th:if="${spaceList == null or spaceList.isEmpty()}">
+	            <p>등록된 공간이 없습니다.</p>
+	        </div>
+	        
+	        <!-- 공간정보 있을 때 -->
+            <div class="col item" id="space-template" th:each="space : ${spaceList}">
+				<div class="card h-100">
+					<a th:href="@{'/space/' + ${space.spNo}}" class="space-light">
+						<img class="card-img-top" th:src="${space.spMainImage}" alt="공간 이미지">
+					</a>
+					<div class="card-body">
+						<h4 class="card-title item-spName" th:text="${space.spName}"></h4>
+					</div>
+					<ul class="list-group list-group-flush">
+						<li class="list-group space-keyword" th:text="${space.spKeyword}"></li>
+						<li class="list-group space-capacity" th:text="${space.spCapacity}"></li>
+						<li class="list-group space-hourprice" th:text="${space.spHourPrice} + '원/시간'"></li>
+					</ul>
+				</div>            
+            </div>
+            
+        </div>
+    </div>
+	
+    <th:block th:insert="~{template/client/fragments/block :: footer}"></th:block>
+
+    <script src="/assets/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/client/space/spaceList.js"></script>
+</body>
+</html>

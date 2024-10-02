@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpaceHub</title>
+    <link rel="stylesheet" href="/css/client/auth/signupForm.css" />
+    <style>
+        .nav-dots {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .dot {
+            height: 12px;
+            width: 12px;
+            margin: 0 5px;
+            background-color: #ccc;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .dot.active {
+            background-color: #800080;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="nav-dots">
+            <span class="dot"></span>
+            <span class="dot active"></span>
+        </div>
+
+        <h2>회원가입이 완료되었습니다!</h2>
+
+        <div class="form-actions">
+            <button id="userLoginFormBtn">로그인 화면으로 이동</button>
+        </div>
+    </div>
+    
+    <script src="/js/jquery-3.7.1.min.js"></script>
+    <script src="/js/common.js"></script>
+    <script>
+	    $("#userLoginFormBtn").on("click", function(){
+	        locationProcess("/auth/login");
+	    });
+    </script>
+</body>
+</html>

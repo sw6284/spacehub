@@ -1,0 +1,125 @@
+body {
+    font-family: 'Helvetica', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.container {
+    width: 800px;
+    height: 600px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+.login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-placeholder {
+    width: 300px;
+    height: 450px;
+    background-color: gray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.image-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* This ensures the image covers the entire div */
+}
+
+
+.login-form {
+    margin-left: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-form h2 {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333; /* 제목 색상 추가 */
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+    width: 245px; 
+    padding: 14px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.login-form .link-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    width: 280px; 
+}
+
+.login-form .link-container button {
+    font-size: 12px;
+    color: #115fff;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    text-decoration: underline; 
+}
+
+#signupBtn {
+    text-align: left;
+}
+
+#findIdBtn {
+    text-align: right;
+}
+
+.login-form button {
+    width: 280px; /* 너비를 280px로 설정 */
+    padding: 14px;
+    margin-top: 5px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.login-btn {
+    background-color: #002c87;
+    color: white;
+}
+
+.login-btn:hover {
+    background-color: #aec8ff;
+}
+
+.kakao-btn {
+    background-color: #fbc02d;
+    color: #3e2723;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.kakao-btn:hover {
+    background-color: #f9a825;
+}

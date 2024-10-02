@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">    
+<head>
+    <meta charset="UTF-8">
+    <title>문의게시판</title>
+</head>
+<body>
+	<form id="inquiryUpdateForm" name="inquiryUpdate" th:object="${inqUpdate}">
+	<div class="text-center"><h3>게시판 수정</h3></div>
+		
+			<div>
+				<div id="dataForm">
+					<input type="hidden" name="no" th:value="*{inqNo}"/>
+				</div>
+				
+				<table class="table table-bordered">
+					<tbody class="text-center">
+						<tr>
+							<td class="col-md-3">작성자</td>
+							<td class="col-md-3 text-start" th:text="*{member.memberName}"></td>
+							<td class="col-md-3">작성일</td>
+							<td class="col-md-3 text-start" th:text="*{#temporals.format(inqDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+						</tr>
+						<tr>
+							<td class="col-md-3">글제목</td>
+							<td colspan="3" class="col-md-9 text-start" th:text="*{inqTitle}"></td>
+						</tr>
+						<tr class="mb-3 row">
+							<td class="col-md-2 col-form-label">글내용</td>
+								<textarea class="form-control inquiry-textarea" rows="8" th:field="*{inqContent}"></textarea>	
+						</tr>
+						
+						<!-- 비밀글 체크박스 -->
+			            <label class="pwch">
+			                <input type="checkbox" th:field="*{inqSecret}" class="form-check-input"> 비밀글
+			            </label>
+			
+			            <!-- 비밀번호 입력 -->
+			            <input type="password" th:field="*{inqPassword}" placeholder="비밀번호를 입력하세요" id="pw" name="pw" class="form-control">
+			
+			            <!-- 설정 버튼 -->
+			            <button type="button" id="insertFormBtn" class="btn btn-primary btn-sm mb-2">설정</button>
+					</tbody>
+				</table>	
+		
+			<div class="row text-center mb-2">
+		  		<div class="col-md-9 text-start" id="pwdFormArea"></div>
+		  		<div class="col-md-3 text-end">
+		  		<!-- 글목록 : inquiryListBtn / 임시저장 : tempsaveFormBtn / 작성완료 : SaveFormBtn / 
+						최소 : CancleFormBtn / 삭제 : inquiryDeleteBtn / 수정 : updateFormBtn -->
+					<button type="button" id="inquiryDeleteBtn" class="btn btn-primary btn-sm">글삭제</button>
+					<button type="button" id="updateFormBtn" class="btn btn-primary btn-sm">글수정</button>
+					<button type="button" id="inquiryListBtn" class="btn btn-primary btn-sm">글목록</button>
+		  		</div>
+			</div>
+	</th:block>		
+</form>
+</body>
+
+</html>

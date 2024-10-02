@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <th:block th:insert="~{template/client/fragments/block :: config}"></th:block>
+       <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       
+       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+       <link rel="stylesheet" href="/css/client/space/spaceDetail.css">
+       <link href="/css/client/button.css" rel="stylesheet">
+      
+      <title>공간 정보</title>
+   </head>
+   
+   <body>
+      <div>
+         <th:block th:insert="~{template/client/fragments/block :: header}"></th:block>
+          
+          <div class="container mt-5">
+             <!-- 공간 이미지 -->
+				<div class="image-gallery">
+				    <!--//<img th:each="img : ${spaceImgs}" th:src="@{/SpaceHub/attachment/spaceImg/} + ${img.spImg}" alt="공간 이미지"/> -->
+				    <th:block th:each="img : ${spaceImgs}">
+				     	<img th:src="@{/admin/space/view/} + ${img.spImg}" />
+				     </th:block>
+				     
+				</div>
+          
+              <!-- 공간 이름과 기본 정보 -->
+              <h1 th:text="${space.spName}"></h1>
+              <table class="table">
+                  <tbody>
+                      <tr>
+                          <th>수용 인원</th>
+                          <td id="spCapacity" th:text="${space.spCapacity}"></td>
+                          
+                      </tr>
+                      <tr>
+                          <th>이용 목적 키워드</th>
+                          <td th:text="${space.spKeyword}"></td>
+                      </tr>
+                      <tr>
+                          <th>시간당 가격</th>
+                          <td id="price" th:text="${space.spHourPrice}"></td>
+                      </tr>
+                      <tr>
+                          <th>비치된 물품</th>
+                          <td th:text="${spaceDetail.spEquipment}"></td>
+                      </tr>
+                  </tbody>
+              </table>
+      		
+      		<!-- 공간 상세 설명 -->
+		        <div class="mt-4">
+		            <h3>공간 상세 설명</h3>
+		            <p th:text="${spaceDetail.spDescription}"></p>
+		        </div> 
+		        
+      		<!-- 달력과 시간 선택 -->
+		        <div class="container">
+					<h3 class="calendar-title">예약 날짜 선택</h3>
+					<div class="show-choice">
+						<div id="selectedDate" class="selected-date-time">날짜를 선택하세요</div>
+				        <div id="timePickerContainer"> 
+				        <div id="selected-time" class="selected-date-time">선택된 시간: 없음</div>
+			        </div>
+			        <div class="calendar-header">	
+			            <button id="prevMonth" class="nav-button">&lt;</button>
+			            <h2 id="calendarTitle"></h2>
+			            <button id="nextMonth" class="nav-button">&gt;</button>
+			        </div>
+			        <div id="calendar" class="calendar"></div>
+
+
+                    <h3><br>시간 선택</h3>
+                    <div class="scrollable-container">
+			            <ul class="time-grid">
+			                <li><div class="time-slot" data-time="9">9시</div></li>
+			                <li><div class="time-slot" data-time="10">10시</div></li>
+			                <li><div class="time-slot" data-time="11">11시</div></li>
+			                <li><div class="time-slot" data-time="12">12시</div></li>
+			                <li><div class="time-slot" data-time="13">13시</div></li>
+			                <li><div class="time-slot" data-time="14">14시</div></li>
+			                <li><div class="time-slot" data-time="15">15시</div></li>
+			                <li><div class="time-slot" data-time="16">16시</div></li>
+			                <li><div class="time-slot" data-time="17">17시</div></li>
+			                <li><div class="time-slot" data-time="18">18시</div></li>
+			                <li><div class="time-slot" data-time="19">19시</div></li>
+			                <li><div class="time-slot" data-time="20">20시</div></li>
+			                <li><div class="time-slot" data-time="21">21시</div></li>
+			            </ul>
+			        </div>
+			        	
+
+	                </div>
+			    </div>
+            <!-- 리뷰 -->
+            <div class="group-review">
+               <h3>리뷰 보기</h3>
+            </div>
+            <div th:replace="~{'client/review/reviewList' :: content}"></div>
+            
+              <!-- 이용 수칙 -->
+		        <div class="mt-4" id="rule-text">
+		            <h3>이용 수칙</h3>
+		            <p>1. 사전 예약제로 운영되며 예약시간을 준수하여 주시길 바랍니다. </p>
+		            <p>2. 예약시 사전준비 및 뒷정리 시간을 포함하여 신청해주세요. </p>
+		            <p>3. 음료 및 간단한 다과만 반입이 가능하며 주류 반입은 일체 불가능합니다. </p>
+		            <p>4. 사용 후에는 사용 전과 같은 상태로 원상복구 해주시길 바랍니다. </p>            
+		        </div>
+				<div class="group-button">
+				<div class="spNo" th:data-spno="${space.spNo}"></div>
+			        <a href="/space" class="btn btn-second mt-3">모든 공간 보러 가기</a>
+			        <button class="btn btn-success mt-3 resBtn">예약하러 가기</button>
+				</div>
+
+          </div>
+   
+         <th:block th:insert="~{template/client/fragments/block :: footer}"></th:block>   
+      </div>
+      
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.8/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+	<script src="/js/client/space/spaceDetail.js"></script>
+</body>
+</html>

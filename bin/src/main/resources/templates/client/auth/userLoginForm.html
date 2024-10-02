@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpaceHub</title>
+    <link rel="stylesheet" href="/css/client/auth/userLoginForm.css">
+</head>
+<body>
+    <div class="container">
+        <div class="login-container">
+            <div class="image-placeholder">
+                <img src="/image/login_image.jpg">
+            </div>
+            <div class="login-form">
+                <h2>안녕하세요<br>SpaceHub 입니다</h2>
+                <form id="loginForm">
+                    <input type="text" id="userId" name="userId" placeholder="아이디" required>
+                    <br>
+                    <input type="password" id="userPasswd" name="userPasswd" placeholder="비밀번호" required>
+                    <br>
+                    <div class="link-container">
+                        <button type="button" class="link-button" id="signupBtn" th:data-url="@{/auth/signupForm}">회원가입</button>
+                        <button type="button" class="link-button" id="findIdBtn" th:data-url="@{/auth/findIdForm}">아이디/비밀번호 찾기</button>
+                    </div>
+                    <button type="button" class="login-btn" id="login-btn">로그인</button>
+                    <br>
+                    <button type="button" class="kakao-btn" id="kakao-btn">카카오로 로그인</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript 파일 링크 -->
+    <script src="/js/jquery-3.7.1.min.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="/js/client/auth/userLoginForm.js"></script>
+</body>
+</html>

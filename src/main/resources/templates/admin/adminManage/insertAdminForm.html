@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" class="h-100" data-bs-theme="auto">
+<head>
+	<th:block th:insert="~{template/admin/fragments/adminNav :: config}"></th:block>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpaceHub 관리자</title>
+    <link rel="stylesheet" href="/css/admin/adminManage/insertAdminForm.css">
+</head>
+<body>
+<div class="wrapper">
+        <!-- 왼쪽 네비게이션 (공통) -->
+        <div class="mb-auto">
+	        <th:block th:insert="~{template/admin/fragments/adminNav :: admin-nav}"></th:block>
+	    </div>
+	    <div class="main-content">
+	    	<div id="container">
+	        	<h2>SpaceHub 신규 관리자 등록</h2>        
+		        <form id="signupForm" th:object="${admin}">
+		            <div class="form-group">
+		                <label for="admId">아이디</label>
+		                <input type="text" id="admId" name="admId" th:field="*{admId}" required />
+		            </div>
+		
+		            <div class="form-group">
+		                <label for="admPasswd">비밀번호</label>
+		                <input type="password" id="admPasswd" name="admPasswd" th:field="*{admPasswd}" required />
+		            </div>
+		
+		            <div class="form-group">
+		                <label for="admName">이름</label>
+		                <input type="text" id="admName" name="admName" th:field="*{admName}" required />
+		            </div>
+		
+		            <div class="form-group">
+		                <label for="admEmail">이메일</label>
+		                <input type="email" id="admEmail" name="admEmail" th:field="*{admEmail}" required />
+			        </div>
+		
+		            <div class="form-group">
+		                <label for="admPhone">전화번호</label>
+		                <input type="text" id="admPhone" name="admPhone" th:field="*{admPhone}" required />
+		            </div>
+		
+		            <div class="form-actions">
+		                <button type="submit" class="btn-success" id="signupBtn">등록</button>		                
+		            	<button type="button" class="btn-danger" id="cancelBtn">취소</button>
+		            </div>
+		        </form>
+	        </div>
+	    </div>
+   </div>
+    <script src="/js/jquery-3.7.1.min.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="/js/admin/adminManage/insertAdminForm.js"></script>
+</body>
+</html>

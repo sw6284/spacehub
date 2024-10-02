@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" class="h-100" data-bs-theme="auto">
+	<head>
+	    <th:block th:insert="~{template/client/fragments/block :: config}"></th:block>
+	    <meta name="theme-color" content="#712cf9">
+	    <link href="/css/client/main.css" rel="stylesheet">
+	    <link rel="canonical" href="https://getbootstrap.kr/docs/5.3/examples/cover/">
+	</head>
+	<body>
+	    <div>    
+	        <header class="mb-auto">
+	            <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+	                <th:block th:insert="~{template/client/fragments/block :: header}"></th:block>
+	            </nav>
+	        </header>
+	
+	        <main>
+			    <!-- 메인 이미지 섹션 -->
+			    <section class="hero-section">
+			        <div class="hero-image">
+			            <img src="/images/client/yolk-coworking-krakow-o6zwhL9o3Co-unsplash.jpg" alt="Main Banner" class="hero-img">
+			            <div class="hero-text">
+			                <h1>Welcome to SpaceHub</h1>
+			                <p>Find and book the perfect space for your needs.</p>
+			            </div>
+			        </div>
+			    </section>
+	
+	            <!-- 추천 공간 리스트 -->
+	            <section id="spaces" class="mb-5">
+	                <h2 class="mb-4">추천 공간</h2>
+	                <div class="row">
+	                    <!-- 각 공간 항목 -->
+	                    <div class="col-md-6 mb-4">
+	                        <div class="card">
+	                            <img src="https://via.placeholder.com/500x250" class="card-img-top" alt="추천 공간 1">
+	                            <div class="card-body">
+	                                <h5 class="card-title">추천 공간 1</h5>
+	                                <p class="card-text">간단한 설명이 들어갑니다.</p>
+	                                <a href="#" class="btn btn-primary">자세히 보기</a>
+	                            </div>
+	                        </div>
+	                    </div>
+	                    <div class="col-md-6 mb-4">
+	                        <div class="card">
+	                            <img src="https://via.placeholder.com/500x250" class="card-img-top" alt="추천 공간 2">
+	                            <div class="card-body">
+	                                <h5 class="card-title">추천 공간 2</h5>
+	                                <p class="card-text">간단한 설명이 들어갑니다.</p>
+	                                <a href="#" class="btn btn-primary">자세히 보기</a>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </section>
+	
+	            <!-- 지도 -->
+	            <section id="map" class="mb-5">
+	                <h2 class="mb-4">지도</h2>
+	                <div class="map-container">
+	                    <!-- 지도 삽입 (예: Google Maps Embed) -->
+	                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3162.1122734149626!2d127.02762631531659!3d37.49794297982538!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b5b6ef0a2bb5b%3A0x6d8f5d88f6c8e1a!2z7J287Iud7Jq47Yq4!5e0!3m2!1sko!2skr!4v1639561470981!5m2!1sko!2skr" width="800" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+	                </div>
+	            </section>
+	
+	            <!-- 공간 대여 수칙 -->
+	            <section id="rules" class="mb-5">
+	                <h2 class="mb-4">공간 대여 수칙</h2>
+	                <ul>
+	                    <li>수칙 1: 대여 시 사전 예약 필수</li>
+	                    <li>수칙 2: 사용 후 청소를 부탁드립니다</li>
+	                    <li>수칙 3: 지정된 시간 내에 사용을 완료해 주세요</li>
+	                    <li>수칙 4: 음주 및 흡연 금지</li>
+	                    <li>수칙 5: 시설에 대한 책임을 다해 주세요</li>
+	                </ul>
+	            </section>
+	            
+	        </main>
+	        
+	        <footer>
+	            <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+	                <th:block th:insert="~{template/client/fragments/block :: footer}"></th:block>
+	            </nav>
+	        </footer>
+	    </div>
+	    
+	    <script src="/assets/dist/js/bootstrap.bundle.min.js"></script>
+	    <script src="/js/jquery-3.7.1.min.js"></script>
+	    <script src="/js/common.js"></script>
+	</body>
+</html>

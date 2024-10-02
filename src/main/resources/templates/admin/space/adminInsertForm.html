@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <title>관리자 공간 상세 페이지</title>
+		
+	    <th:block th:insert="~{template/admin/fragments/adminNav :: config}"></th:block>
+	    <link rel="stylesheet" href="/css/admin/space/adminInsertForm.css">
+	</head>
+	
+	<body>
+	    <div class="wrapper">
+	        <th:block th:insert="~{template/admin/fragments/adminNav :: admin-nav}"></th:block>
+	        
+	        <div class="main-content">
+	            <div class="container">
+	                <h1>공간 상세 페이지</h1>
+	                <hr />
+	                <form action="#" th:action="@{/admin/space/spaceInsert}" method="post" enctype="multipart/form-data">
+	
+	                    <input type="hidden" name="spNo" th:value="${space.spNo}" />
+	                    <input type="hidden" name="spDetail" th:value="${spaceDetail.spDetail}" />
+	
+	                    <table class="form-table">
+	                        <tbody>
+		                        <tr>
+		                        	<th>관리자번호(테스트용)</th>
+		                        	<td><input type="text" name="admNo" th:value="${space.admNo}"></td>
+		                        </tr>
+	                            <tr>
+	                                <th><label for="spName">공간 이름</label></th>
+	                                <td><input type="text" id="spName" name="spName" th:value="${space.spName}" required /></td>
+	                            </tr>
+	                            <tr>
+	                            	<th><label>이용 인원</label></th>
+	                            	<td><input type="text" id="spCapacity" name="spCapacity" th:value="${space.spCapacity}" />명</td>
+	                            </tr>
+	                            <tr>
+	                            	<th><label for="spHourPrice">시간당 가격</label></th>
+        							<td><input type="number" id="spHourPrice" name="spHourPrice" th:value="${space.spHourPrice}" required />원</td>
+	                            </tr>
+	                            <tr>
+	                                <th><label>공간 키워드</label></th>
+	                                <td>
+	                                    <div class="checkbox-group">
+	                                        <label><input type="checkbox" name="spKeyword" value="회의" th:field="*{space.spKeyword}"> 회의</label>
+	                                        <label><input type="checkbox" name="spKeyword" value="세미나" th:field="*{space.spKeyword}"> 세미나</label>
+	                                        <label><input type="checkbox" name="spKeyword" value="워크숍" th:field="*{space.spKeyword}"> 워크숍</label>
+	                                    </div>
+	                                </td>
+	                            </tr>
+	                            <tr>
+	                                <th><label for="spDescription">공간 설명</label></th>
+	                                <td><textarea id="spDescription" name="spDescription" th:text="${spaceDetail.spDescription}"></textarea></td>
+	                            </tr>
+	                            <tr>
+	                                <th><label>비치된 물품</label></th>
+	                                <td>
+	                                    <div class="checkbox-group">
+	                                    	<label><input type="checkbox" name="spEquipment" value="화이트보드" th:field="*{spaceDetail.spEquipment}"> 화이트보드</label>
+	                                        <label><input type="checkbox" name="spEquipment" value="프로젝터" th:field="*{spaceDetail.spEquipment}"> 프로젝터</label>
+	                                        <label><input type="checkbox" name="spEquipment" value="유선 마이크, 스피커" th:field="*{spaceDetail.spEquipment}"> 유선 마이크, 스피커</label>
+	                                    </div>
+	                                </td>
+	                            </tr>
+	                            <tr>
+	                                <th><label for="spImg">공간 이미지</label></th>
+	                                <td>
+	                                    <input type="file" id="spImg" name="spImgFiles" accept="image/*" />
+	                                    <div id="imagePreview"></div> 
+	                                    <!--//<input type="file" id="file" name="file" accept="image/*" /> -->
+	                                </td>
+	                            </tr>
+	                        </tbody>
+	                    </table>
+						<br />
+	                    <!-- 제출 버튼 -->
+	                    <div class="button-group">
+	                        <button type="submit" id="spaceSaveBtn" class="btn-success">저장</button>
+	                        <button type="button" id="spaceCancelBtn" class="btn-danger">취소</button>
+	                    </div>
+	                    
+	                </form>
+	            </div>
+	        </div>
+	    </div>
+
+	    <!-- <script src="/js/admin/space/adminInsertForm.js"></script> -->
+	</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>문의 답변 작성</title>
+    <style>
+        .header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        .header .form-group {
+            flex: 1 1 20%;
+            min-width: 150px;
+        }
+        .header .form-group input[type="text"],
+        .header .form-group select,
+        .header .form-group input[type="password"],
+        .header .form-group textarea {
+            width: 100%;
+            box-sizing: border-box;
+        }
+        #passwordSection, #passwordButtonSection {
+            display: none; /* 초기에는 숨김 */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" th:object="${detail}">
+        <div class="text-center"><h3>게시판 상세</h3></div>
+
+        <!-- 숨겨진 입력 필드 -->
+        <form id="dataForm">
+            <input type="hidden" name="no" th:value="*{inqNo}"/>
+        </form>
+                
+        <table class="table table-bordered">
+            <tbody class="text-center">
+                <tr>
+                    <td class="col-md-3">작성자</td>
+                    <td class="col-md-3 text-start" th:text="*{member.memberName}"></td>
+                    <td class="col-md-3">작성일</td>
+                    <td class="col-md-3 text-start" th:text="*{#temporals.format(inqDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                </tr>
+                <tr>
+                    <td class="col-md-3">카테고리</td>
+                    <td colspan="3" class="col-md-9 text-start" th:text="*{inqCate}"></td>
+                </tr>
+                <tr>
+                    <td class="col-md-3">제목</td>
+                    <td colspan="3" class="col-md-9 text-start" th:text="*{inqTitle}"></td>
+                </tr>
+                <tr class="board-table-tr-height">
+                    <td class="col-md-3 align-middle">내용</td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="col-md-9 text-start" th:utext="${#strings.replace(detail.inqContent, '\n', '<br />')}"></td>
+                </tr>
+            </tbody>
+        </table>   
+
+        <div class="container">
+            <h2>문의 답변 작성</h2>
+            <form id="AnswerinsertForm" th:object="${inquiryAnswer}" action="/main/admin/inquiry/AnswerinsertForm" method="post">
+                
+                <!-- 비밀글 체크 여부 표시 
+                <div class="form-group">
+                    <label for="inqSecret">비밀글 여부: </label>
+                    <input type="checkbox" id="inqSecret" th:checked="*{inqSecret}" disabled>
+                </div> -->
+
+                <div class="body">
+                    <!-- 답변 내용 입력 -->
+                    <div class="form-group">
+                        <label for="answerContent">답변 내용</label>
+                        <textarea id="answerContent" th:field="*{answerContent}" placeholder="답변 내용을 입력하세요" class="form-control"></textarea>
+                    </div>
+                </div>
+
+                <div class="text-end">
+                    <!-- 버튼들 -->
+                    <button type="reset" id="resetFormBtn" class="btn btn-primary btn-sm mb-2">초기화</button>
+                    <button type="submit" id="saveFormBtn" class="btn btn-primary btn-sm mb-2">답변 완료</button>
+                    <button type="button" id="cancelFormBtn" class="btn btn-secondary btn-sm mb-2" onclick="window.location.href='/inquiry/inquiryList'">취소</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- 추가 스크립트 -->
+    <script src="/js/jquery-3.7.1.min.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="/js/client/inquiry/insertForm.js"></script>
+</body>
+</html>

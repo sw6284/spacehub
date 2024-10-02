@@ -1,0 +1,163 @@
+/* 페이징 네비게이션 스타일 */
+.pagination {
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: 20px 0;
+    list-style: none; /* 불릿 포인트 제거 */
+}
+
+.pagination .page-item {
+    margin: 0 5px;
+}
+
+.pagination .page-link {
+    display: inline-block;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #000; /* 기본 글씨 색상 검정색 */
+    text-decoration: none;
+    background-color: #fff; /* 기본 배경색 흰색 */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.pagination .page-link:hover {
+    background-color: #003366; /* 호버 시 배경색 네이비 */
+    color: #f9c74f; /* 호버 시 글씨 색상 노란색 */
+}
+
+.pagination .page-item.active .page-link {
+    color: #003366; /* 활성 페이지의 글씨 색상 네이비 */
+    background-color: #f1f1f1; /* 활성 페이지의 배경색 밝은 회색 */
+    border-color: #003366; /* 활성 페이지의 테두리색 네이비 */
+    pointer-events: none; /* 비활성화된 페이지를 클릭할 수 없게 설정 */
+}
+
+.pagination .page-item.disabled .page-link {
+    color: #6c757d; /* 비활성화된 버튼의 글씨 색상 회색 */
+    background-color: #fff; /* 비활성화된 버튼의 배경색 흰색 */
+    border-color: #ddd; /* 비활성화된 버튼의 테두리색 회색 */
+    pointer-events: none; /* 비활성화된 버튼을 클릭할 수 없게 설정 */
+}
+
+.pagination .page-item.disabled .page-link:hover {
+    background-color: #fff; /* 비활성화된 버튼의 호버 시 배경색 흰색 */
+    color: #6c757d; /* 비활성화된 버튼의 호버 시 글씨 색상 회색 */
+}
+
+/* 리스트 css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+header {
+    background: #f9c74f;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+.hero {
+    background-image: url('../images/hero_bg_1.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+main {
+    padding: 20px;
+}
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+.faq-content {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+.question {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    background: #fff; /* 기본 배경색 흰색 */
+    border: 1px solid #fff; /* 테두리 색상 */
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 5px;
+    font-size: 16px; /* 글씨 크기 */
+    font-weight: 500; /* 글씨 두께 */
+    color: #000; /* 기본 글씨 색상 검정색 */
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.question:hover {
+    background: #f1f1f1; /* 호버 시 배경색 밝은 회색 */
+}
+
+/* 버튼의 '+'와 '-' 부분의 색상 조정 */
+.question span {
+    font-size: 20px; /* 기호 크기 */
+    font-weight: bold;
+    color: #000; /* 기호 색상 검정색 */
+}
+
+/* 답변 부분 */
+.answer {
+    padding: 10px;
+    border-top: 1px solid #ddd;
+    background: #fff; /* 답변 배경색 흰색 */
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    color: #FFD700; /* 기본 노란색 글씨 */
+    background-color: #fff; /* 기본 흰색 배경 */
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    border: 2px solid #FFD700; /* 노란색 테두리 */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #001f3f; /* 호버 시 네이비 배경 */
+    color: #FFD700; /* 호버 시 노란색 글씨 */
+}
+
+.button.button-new {
+    background-color: #fff; /* 새글 작성 버튼 기본 흰색 배경 */
+    color: #FFD700; /* 노란색 글씨 */
+    border: 2px solid #FFD700; /* 노란색 테두리 */
+}
+
+.button.button-new:hover {
+    background-color: #001f3f; /* 호버 시 네이비 배경 */
+    color: #FFD700; /* 호버 시 노란색 글씨 */
+}
+
+#board-list {
+    text-align: center;
+    margin: 20px 0;
+}
+
+/* 작성 날짜와 카테고리 스타일 */
+.notice-meta {
+    display: block;
+    font-size: 0.8em; /* 작은 글씨 크기 */
+    color: #666; /* 회색 텍스트 색상 */
+    margin-top: 10px; /* 위쪽 여백 */
+}

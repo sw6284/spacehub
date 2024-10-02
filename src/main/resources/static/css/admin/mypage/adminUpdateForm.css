@@ -1,0 +1,60 @@
+.wrapper {
+    display: flex;
+    height: 100vh;
+    background-color:  #f8f9fa;
+	color: black;
+}
+/* 메인 콘텐츠 스타일 */
+.container {
+    padding: 20px;
+    max-width: 1000px; /* max-width 줄이기 */
+    margin: 0 auto;
+}
+
+.main-content {
+    flex: 1;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    margin: 20px auto; /* 중앙 정렬 */
+    max-width: 800px; /* 너비 줄이기 */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+/* 폼 스타일 */
+.updateForm {
+    background-color: #fff;
+    padding: 30px;
+    margin: 20px auto;
+    max-width: 600px; /* 폼 너비 조정 */
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* 폼 필드 스타일 */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* 버튼 정렬 및 스타일 */
+.text-end {
+    text-align: right;
+    margin-top: 20px;
+}

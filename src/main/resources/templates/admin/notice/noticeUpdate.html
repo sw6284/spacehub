@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" class="h-100" data-bs-theme="auto">
+<head>
+    <th:block th:insert="~{template/admin/fragments/adminNav :: config}"></th:block>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpaceHub 관리자</title>
+    <link href="/css/admin/adminMain.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/admin/notice/noticeUpdate.css"> <!-- 외부 CSS 파일 링크 -->
+    <link rel="stylesheet" href="/css/client/button.css"> <!-- 외부 CSS 파일 링크 -->
+</head>
+<body>
+    <div class="wrapper">
+        <!-- 왼쪽 네비게이션 (공통) -->
+        <div class="mb-auto">
+            <th:block th:insert="~{template/admin/fragments/adminNav :: admin-nav}"></th:block>
+        </div>
+        
+       <!-- 오른쪽 콘텐츠 영역 -->
+        <div class="main-content">
+            <th:block layout:fragment="content">
+                <div class="text-left-top">
+                    <h3>게시판 수정</h3>
+                </div>   
+                
+                <div class="container"> 
+                    <form id="updateForm" name="updateForm" th:action="@{/admin/notice/noticeUpdate}" method="post" th:object="${updateData}">
+                        <input type="hidden" name="nbNo" th:value="*{nbNo}" /> <!-- 공지사항 번호 -->
+                        <div class="mb-3 row">
+                            <label class="col-sm-2 col-form-label">작성자 번호</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" th:field="*{admNo}" required /> <!-- 관리자 번호 수정 가능 -->
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-sm-2 col-form-label">글제목</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" th:field="*{nbTitle}" required id="title" /> <!-- 제목 입력 필드에 id 추가 -->
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-sm-2 col-form-label">글내용</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control board-textarea" rows="8" th:field="*{nbContent}" required id="content"></textarea> <!-- 내용 입력 필드에 id 추가 -->
+                            </div>
+                        </div>
+                        <!-- 에러 메시지 출력 -->
+                        <div th:if="${errorMessage}" class="alert alert-danger">
+                            <p th:text="${errorMessage}"></p>
+                        </div>
+                    </form>
+                    <div class="text-end">
+                        <!-- 버튼 클릭 시 form.submit() 호출 -->
+                        <button type="button" id="boardUpdateBtn" class="btn-success">글수정</button>
+                        <button type="button" id="boardCancelBtn" class="btn-danger">글취소</button>
+                        <button type="button" id="boardListBtn" class="btn-second">글목록</button>
+                    </div>
+                </div>
+            </th:block>
+        </div>
+    </div>
+    
+    <th:block layout:fragment="script">
+      	
+    	<script src="https://code.jquery.com/jquery.js"></script>
+    	<script src="/js/common.js"></script>
+        <script>
+            $(document).ready(function() {
+                $("#boardUpdateBtn").on("click", function() {
+                    // 제목과 내용 체크
+                    if (!chkData("#title", "제목을")) return; // 제목 체크
+                    else if (!chkData("#content", "내용을")) return; // 내용 체크
+                    else {
+                        $("#updateForm").submit(); // form의 submit() 메서드 호출
+                    }
+                });
+
+                $("#boardCancelBtn").on("click", function() {
+                    $("#updateForm")[0].reset(); // 폼 초기화
+                });
+
+                $("#boardListBtn").on("click", function() {
+                    location.href = "/admin/notice/noticeList"; // 목록 페이지로 이동
+                });
+            });
+        </script>
+    </th:block>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" class="h-100" data-bs-theme="auto">
+
+<head>
+    <title>SpaceHub</title>
+    <th:block th:insert="~{template/client/fragments/block :: config}"></th:block>
+ 	<meta name="theme-color" content="#712cf9">
+    <link href="/css/client/main.css" rel="stylesheet">
+    <link rel="canonical" href="https://getbootstrap.kr/docs/5.3/examples/cover/">
+    <link rel="stylesheet" href="/css/client/notice/noticeList.css"> <!-- 외부 CSS 파일 링크 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
+
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script>
+        $(function () {
+            let i = 0;
+            $('#del').click(function () {
+                if (i == 0) {
+                    $('#delTr').show("slow");
+                    $('#del').text("취소");
+                    i = 1;
+                } else {
+                    $('#delTr').hide();
+                    $('#del').text("삭제");
+                    i = 0;
+                }
+            });
+
+            const items = document.querySelectorAll('.question');
+
+            function openCloseAnswer() {
+                const answerId = this.id.replace('que', 'ans');
+                const answerElement = document.getElementById(answerId);
+
+                if (answerElement.style.display === 'block') {
+                    answerElement.style.display = 'none';
+                    document.getElementById(this.id + '-toggle').textContent = '+';
+                } else {
+                    answerElement.style.display = 'block';
+                    document.getElementById(this.id + '-toggle').textContent = '-';
+                }
+            }
+
+            items.forEach(item => item.addEventListener('click', openCloseAnswer));
+        });
+
+        function confirmDelete(event, form) {
+            event.preventDefault(); // 폼의 기본 제출 동작 방지
+
+            if (confirm("정말로 삭제하시겠습니까?")) {
+                form.submit(); // 폼 제출
+            }
+        }
+    </script>
+</head>
+
+<body>
+            <th:block th:insert="~{template/client/fragments/block :: header}"></th:block>
+
+    <main class="section section-properties">
+        <div class="container">
+            <h2 class="font-weight-bold text-primary heading">공지사항 목록</h2>
+
+            <hr /><br><br>
+
+            <!-- 공지사항 목록을 반복 -->
+            <div id="faq-list" class="faq-list">
+                <div class="faq-content" th:each="vo : ${noticeList.dtoList}">
+                    <div class="notice-item">
+                        <button class="question" th:id="'que-'+${vo.nbNo}">
+                            <span th:id="'que-'+${vo.nbNo}+'-toggle'">+</span>
+                            <h2 th:text="${vo.nbTitle}"></h2>
+                        </button>
+
+                        <div class="answer" th:id="'ans-'+${vo.nbNo}" style="display:none;">
+                        <!-- 작성 날짜와 카테고리 추가 -->
+                                <small class="notice-meta">
+                                    작성 날짜: <span th:text="*{#temporals.format(vo.nbDate, 'yyyy-MM-dd HH:mm')}"></span><br/>
+                                    카테고리: <span th:text="${vo.nbCate}"></span>
+                                </small>
+                            <p style="white-space: pre-line;">
+                                <h2 th:text="${vo.nbContent}"></h2>
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <!-- 이전 페이지 버튼 -->
+                    <li class="page-item" th:classappend="${noticeList.prev ? '' : 'disabled'}">
+                        <a th:href="@{noticeList(page=${noticeList.prevPage})}" class="page-link" th:if="${noticeList.prev}">Previous</a>
+                        <span th:if="${!noticeList.prev}" class="page-link">Previous</span>
+                    </li>
+
+                    <!-- 페이지 번호 출력 -->
+                    <li th:each="number : ${noticeList.pageNumList}" th:classappend="'page-item ' + ${(noticeList.current == number) ? 'active' : ''}">
+                        <a th:href="@{noticeList(page=${number})}" class="page-link" th:text="${number}"></a>
+                    </li>
+
+                    <!-- 다음 페이지 버튼 -->
+                    <li class="page-item" th:classappend="${noticeList.next ? '' : 'disabled'}">
+                        <a th:href="@{noticeList(page=${noticeList.nextPage})}" class="page-link" th:if="${noticeList.next}">Next</a>
+                        <span th:if="${!noticeList.next}" class="page-link">Next</span>
+                    </li>
+                </ul>
+            </nav>
+            
+        </div>
+        
+    </main>
+    <th:block th:insert="~{template/client/fragments/block :: footer}"></th:block>
+</body>
+
+</html>

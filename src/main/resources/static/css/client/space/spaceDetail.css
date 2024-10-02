@@ -1,0 +1,170 @@
+/* 기존 CSS */
+* {
+    user-select: none; 
+}
+
+body {
+    background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
+}
+
+.table-info {
+	width:600px;
+	margin: 0 auto;
+	padding: 10px;
+	
+}
+
+table td, table th {
+    padding: 5px;
+    background-color: #F5F5F5;
+}
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.show-choice {
+	width:600px;
+	background-color: #F5F5F5;
+	padding: 10px;
+
+    margin: 0 auto; /* 중앙 정렬 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+}
+
+.image-gallery img {
+    height: 300px;
+    width: auto;
+    object-fit: cover; /* Ensures the image covers the space, cropping if necessary */
+}
+
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+    margin-top: 20px;
+    width: 50%; /* 달력 너비를 절반으로 줄입니다. */
+    border: 1px solid #ddd; /* 달력에 테두리 추가 */
+    border-radius: 5px; /* 테두리 모서리 둥글게 */
+    margin: auto; /* 중앙 정렬 */
+}
+
+.calendar div {
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid #ddd; /* 각 날짜 셀에 테두리 추가 */
+}
+
+.calendar div.selected {
+    background-color: #007bff;
+    color: white;
+}
+
+.calendar div.disabled {
+    color: #ccc;
+    cursor: not-allowed;
+}
+
+.calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.calendar-header h2 {
+    margin: 0 20px; /* 월 표시와 화살표 사이 간격 조절 */
+}
+
+
+#selectedDate {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+#timePickerContainer {
+	font-size: 20px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+/* 선택된 날짜와 시간 텍스트 스타일 통일 */
+.selected-date-time,
+#selected-time {
+    font-size: 20px; /* 같은 폰트 사이즈 */
+    font-weight: bold; /* 같은 폰트 굵기 */
+    margin-top: 20px; /* 상단 여백 */
+    color: #333; /* 같은 텍스트 색상 */
+}
+
+#timePicker {
+    width: 100%;
+}
+
+.scrollable-container {
+    width: 600px;
+    overflow: hidden;
+    cursor: grab;
+    margin: 0 auto;
+}
+
+.time-grid {
+    display: flex;
+    padding: 0;
+    list-style: none;
+    white-space: nowrap;
+    margin: 0;
+}
+
+.time-slot {
+    width: 40px;
+    height: 40px;
+    background-color: #e0e0e0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: center;
+    line-height: 40px;
+    margin-right: 5px;
+}
+
+.time-slot.selected {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#selected-time {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #333;
+}
+
+#rule-text {
+    text-align: left; /* 텍스트 왼쪽 정렬 */
+    margin: 0 auto; /* 중앙 정렬 */
+    padding: 20px; /* 여백 추가 */
+    width: 80%; /* 박스 너비 조정 */
+    background-color: #e0e0e0; /* 배경색 추가 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* 그림자 추가 */
+}
+
+
+.group-review{
+	margin-bottom: 50px;
+}
+
+.group-button {
+	margin-bottom: 50px;
+}
+.spaceNo{
+	display:none;
+}
+

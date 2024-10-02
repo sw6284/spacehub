@@ -18,5 +18,20 @@
     "name": "upload.inquiry.path",
     "type": "java.lang.String",
     "description": "A description for 'upload.inquiry.path'"
+  },
+  {
+    "name": "kakao.client-id",
+    "type": "java.lang.String",
+    "description": "A description for 'kakao.client-id'"
+  },
+  {
+    "name": "kakao.redirect-uri",
+    "type": "java.lang.String",
+    "description": "A description for 'kakao.redirect-uri'"
+  },
+  {
+    "name": "com.spring.upload.path",
+    "type": "java.lang.String",
+    "description": "A description for 'com.spring.upload.path'"
   }
 ]}

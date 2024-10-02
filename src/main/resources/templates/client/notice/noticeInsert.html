@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpaceHub</title>
+    <link rel="stylesheet" href="/css/client/noticeInsert.css"> <!-- 외부 CSS 파일 링크 -->
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>공지사항 작성</h1>
+        </header>
+
+        <form id="noticeForm">
+            <div class="form-group">
+                <label for="nbTitle">제목</label>
+                <input type="text" id="nbTitle" name="nbTitle" required>
+            </div>
+
+            <div class="form-group">
+                <label for="admNo">관리자 번호</label>
+                <input type="text" id="admNo" name="admNo" required>
+            </div>
+
+            <div class="form-group">
+                <label for="nbContent">내용</label>
+                <textarea id="nbContent" name="nbContent" rows="5" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="nbCate">카테고리</label>
+                <input type="text" id="nbCate" name="nbCate" required>
+            </div>
+
+            <button type="submit" class="button">작성</button>
+            <button type="button" class="button cancel">취소</button>
+            <button type="button" class="button" id="goToList">목록</button> <!-- 목록으로 버튼 추가 -->
+        </form>
+
+        <div id="responseMessage" style="display:none;"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#noticeForm').on('submit', function(event) {
+                event.preventDefault(); // 기본 제출 동작 방지
+
+                // 입력된 값 가져오기
+                const title = $('#nbTitle').val();
+                const admNo = $('#admNo').val();
+                const content = $('#nbContent').val();
+                const category = $('#nbCate').val();
+
+                // AJAX 요청으로 서버에 데이터 전송
+                $.ajax({
+                    type: 'POST',
+                    contentType: 'application/json', // 서버로 전송할 데이터 타입
+                    data: JSON.stringify({
+                    	nbTitle: title,
+                        admNo: admNo,
+                        nbContent: content,
+                        nbCate: category
+                    }),
+                    url: '/notice/noticeInsert', // 엔드포인트 수정
+                    success: function(response) {
+                        $('#responseMessage').text('공지사항이 성공적으로 등록되었습니다.').show();
+                        $('#noticeForm')[0].reset(); // 폼 초기화
+                    },
+                    error: function(xhr, status, error) {
+                        $('#responseMessage').text('오류가 발생했습니다. 다시 시도하세요.').show();
+                    }
+                });
+            });
+
+            $('.cancel').on('click', function() {
+                $('#noticeForm')[0].reset(); // 폼 초기화
+                $('#responseMessage').hide(); // 메시지 숨기기
+            });
+
+            $('#goToList').on('click', function() {
+                window.location.href = '/notice/noticeList'; // 목록 페이지로 리다이렉트
+            });
+        });
+    </script>
+</body>
+</html>

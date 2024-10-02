@@ -1,0 +1,147 @@
+.clickable {
+	cursor: pointer;
+	background-color: #f9f9f9;
+	padding: 10px;
+	border: 1px solid #ddd;
+	margin-bottom: 10px;
+	border-radius: 5px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	transition: background-color 0.3s ease;
+	max-width: 800px; /* 리스트 바의 최대 너비를 줄임 */
+	margin: 0 auto 10px auto; /* 리스트를 중앙에 배치 */
+	gap: 10px; /* 요소 간의 간격을 조절 */
+}
+
+/* 기간 선택 영역을 오른쪽으로 이동시키고 크기를 조절 */
+.date-filter {
+    display: inline-block;  /* 필요한 만큼만 공간 차지 */
+   	margin-left: 670px;
+    margin-right: 20px;  /* 오른쪽 여백 추가 */
+}
+
+/* select 박스와 라벨의 크기를 조절 */
+.date-filter .form-label {
+    font-size: 0.9rem;  /* 라벨 크기 줄이기 */
+    margin-right: 10px;  /* 라벨과 셀렉트 박스 사이 간격 추가 */
+}
+
+.date-filter .form-select {
+    width: 150px;  /* 셀렉트 박스 너비 조절 */
+    height: 30px;  /* 높이 조절 */
+    font-size: 0.9rem;  /* 셀렉트 박스 글자 크기 줄이기 */
+    padding: 5px 10px;  /* 안쪽 여백 조절 */
+}
+
+
+
+.reservation-status {
+	margin-left: auto;
+	text-align: right;
+	flex-shrink: 0; /* 상태 텍스트의 크기를 줄여서 양쪽 공간 확보 */
+}
+
+.clickable div {
+	flex-grow: 1; /* 좌측 정보 영역이 적당히 확장되도록 */
+}
+
+span {
+	display: inline-block;
+	margin-right: 10px; /* 좌측 정보 항목들 간의 간격을 좁힘 */
+}
+
+/* resName (예약자명) 부분: 최대 10글자에 맞춰 고정된 크기로 처리 */
+.resName {
+	display: inline-block;
+	width: 150px; /* 약 10글자 정도의 공간을 확보 */
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+/* spName (공간 이름) 부분: 최대 20글자에 맞춰 고정된 크기로 처리 */
+.spName {
+	display: inline-block;
+	width: 250px; /* 약 20글자 정도의 공간을 확보 */
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+/* 마우스 오버 시 효과 */
+.clickable:hover {
+	background-color: #e6e6e6;
+}
+
+.details div {
+	display: flex;
+	justify-content: space-between; /* 각 항목을 좌우로 배치 */
+	align-items: center;
+	margin-bottom: 10px;
+	padding: 5px 0; /* 상하 간격 조절 */
+	border-bottom: 1px solid #ddd; /* 하단에 얇은 선 추가로 시각적 구분 */
+}
+
+.details strong {
+	color: #555;
+	font-weight: bold;
+	width: 150px; /* 항목명 너비 고정 */
+}
+
+.details span {
+	color: #333;
+	flex-grow: 1; /* 값이 항목명 옆에 확장될 수 있도록 설정 */
+	text-align: right; /* 값은 오른쪽 정렬 */
+	padding-left: 10px; /* 항목명과 값 사이의 간격 */
+}
+
+/* 추가: .details의 전체적인 레이아웃과 스타일 */
+.details {
+	display: none;
+	padding: 15px;
+	background-color: #f9f9f9;
+	margin-top: 10px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	max-width: 800px;
+	margin: 0 auto; /* 중앙 정렬 */
+}
+
+/* 버튼 영역 스타일 */
+.button-area {
+	text-align: right;
+	margin-top: 15px;
+}
+
+/* 버튼 공통 스타일 */
+.btn {
+	padding: 8px 16px;
+	border-radius: 4px;
+	font-size: 14px;
+	transition: background-color 0.3s ease, color 0.3s ease;
+	border: none;
+	cursor: pointer;
+}
+
+/* 결제 취소 버튼 */
+.btn-danger {
+	background-color: #e74c3c;
+	color: white;
+}
+
+/* 결제 취소 버튼 hover */
+.btn-danger:hover {
+	background-color: #c0392b;
+}
+
+/* 결제하기 버튼 */
+.dbtn-primary {
+	background-color: #3498db;
+	color: white;
+}
+
+/* 결제하기 버튼 hover */
+.dbtn-primary:hover {
+	background-color: #2980b9;
+}

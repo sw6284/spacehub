@@ -35,11 +35,15 @@ public class Payment {
 
 	@Column(name = "member_no", nullable = false)
 	private Long memberNo;
+	
 
 	@ManyToOne
 	@JoinColumn(name = "r_no", nullable = false)
 	private Reservation reservation;
 
+	@Column(name = "pay_name", nullable = true)
+	private String payName;
+	
 	@Column(name = "p_amount", nullable = false)
 	private int payAmount;
 
@@ -65,4 +69,6 @@ public class Payment {
 
 	@Column(name = "p_cancelReason", nullable = true)
 	private String payCancelReason;
+	
+	
 }

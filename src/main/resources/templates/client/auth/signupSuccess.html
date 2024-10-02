@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" class="h-100" data-bs-theme="auto">
+<head>
+    <th:block th:insert="~{template/client/fragments/block :: config}"></th:block>
+    <meta name="theme-color" content="#712cf9">
+    <title>SpaceHub</title>
+    <link href="/css/client/main.css" rel="stylesheet">
+    <link rel="canonical" href="https://getbootstrap.kr/docs/5.3/examples/cover/">
+    <link rel="stylesheet" href="/css/client/auth/signupForm.css" />
+</head>
+<body class="d-flex flex-column h-100">
+    <header th:insert="~{template/client/fragments/block :: header}"></header>
+    <main class="flex-shrink-0 mt-5">
+        <div class="container-signupForm">
+            <h2>회원가입이 완료되었습니다!<br /><br /><br /></h2>
+	
+	        <div class="form-actions">
+	            <button type="button" class="button" id="userLoginFormBtn">로그인 화면으로 이동</button>
+	        </div>
+        </div>
+    </main>
+
+    <footer th:insert="~{template/client/fragments/block :: footer}" class="mt-auto"></footer>
+
+    <script src="/js/jquery-3.7.1.min.js"></script>
+    <script src="/js/common.js"></script>
+    <script>
+	    $("#userLoginFormBtn").on("click", function(){
+	        locationProcess("/auth/login");
+	    });
+    </script>
+</body>
+</html>

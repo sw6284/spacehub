@@ -1,0 +1,109 @@
+/* 전체 레이아웃 */
+.wrapper {
+    display: flex;
+    height: 100vh;
+    background-color: #f8f9fa;
+}
+
+/* 메인 콘텐츠 스타일 */
+.main-content {
+    flex: 1;
+    padding: 20px;
+    margin: 0 auto; /* 중앙 정렬 */
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    max-width: 1000px; /* 최대 너비 */
+    box-sizing: border-box;
+}
+
+/* 테이블 컨테이너 */
+.board-table-height {
+    margin-bottom: 20px; /* 테이블과 페이징 사이 여백 추가 */
+}
+
+/* 테이블 스타일 */
+.table {
+    width: 100%;
+    table-layout: auto; /* 열의 크기가 자동으로 조정되도록 설정 */
+    border-collapse: collapse;
+}
+
+.table th, .table td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+/* 페이지네이션 스타일 */
+.pagination {
+    display: flex;
+    justify-content: center; /* 중앙 정렬 */
+    padding: 0;
+    margin: 20px 0; /* 여백 추가 */
+    list-style: none;
+}
+
+.page-item {
+    margin: 0 5px;
+}
+
+.page-link {
+    display: block;
+    padding: 10px 15px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    color: #007bff;
+    text-decoration: none;
+    text-align: center;
+    font-size: 16px;
+}
+
+.page-item.disabled .page-link {
+    color: #6c757d;
+    cursor: not-allowed;
+}
+
+.page-item.active .page-link {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}
+
+/* 테이블 헤더 스타일 */
+.table thead th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+}
+
+/* 상태별 텍스트 색상 */
+.state-waiting {
+    color: blue; /* 답변대기일 때 파란색 */
+    font-weight: bold; /* 강조 효과 */
+}
+
+.state-done {
+    color: red; /* 답변완료일 때 빨간색 */
+    font-weight: bold; /* 강조 효과 */
+}
+
+/* 리스트가 스크롤되지 않도록 높이 제한 */
+.table-container {
+    max-height: 600px; /* 테이블의 최대 높이 설정 */
+    overflow: hidden; /* 스크롤 숨기기 */
+    padding-left: 15%;  /* 좌우 간격 30% 줄이기 */
+    padding-right: 15%; /* 좌우 간격 30% 줄이기 */
+}
+
+/* .goDetail 클래스 스타일 */
+.goDetail {
+    cursor: default;
+    color: inherit;
+    text-decoration: none;
+}
+
+.goDetail:hover {
+    color: inherit;
+    text-decoration: none;
+}

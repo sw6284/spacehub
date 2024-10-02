@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" class="h-100" data-bs-theme="auto">
+	<head>
+		<th:block th:insert="~{template/admin/fragments/adminNav :: config}"></th:block>
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <title>SpaceHub 관리자</title>
+	    <link href="/css/admin/inquiry/answerInquiryList.css" rel="stylesheet">
+	</head>
+	
+	<body>
+	    <div class="wrapper">
+	        <!-- 왼쪽 네비게이션 (공통) -->
+	        <div class="mb-auto">
+		        <th:block th:insert="~{template/admin/fragments/adminNav :: admin-nav}"></th:block>
+		    </div>
+	
+	        <!-- 오른쪽 콘텐츠 영역 -->
+	        <div class="main-content">
+
+    <div class="text-center">
+        <h3>관리자 문의게시판</h3>
+    </div>    
+
+    <div class="board-table-height">    
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr class="text-center">
+                    <th class="col-md-2">글번호</th>
+                    <th class="col-md-1">분류</th>
+                    <th class="col-md-4">글제목</th>
+                    <th class="col-md-2">작성자</th>
+                    <th class="col-md-2">상태</th>
+                    <th class="col-md-3">작성일</th>
+                </tr>
+            </thead>
+            <tbody class="list">
+                <!-- 리스트가 비어 있을 경우 -->
+                <tr th:if="${#lists.size(inquiryList) == 0}">
+                    <td colspan="5" class="text-center">등록된 게시물이 존재하지 않습니다.</td>
+                </tr>
+                
+                <!-- 리스트에 데이터가 있을 경우 -->
+                <tr th:each="inquiry : ${inquiryList}" class="text-center">
+                    <td class="inquiryNo" th:text="${inquiry.inqNo}"></td>
+                    <td th:text="${inquiry.inqCate}"></td>
+                    <td class="goDetail" th:text="${inquiry.inqTitle}"></td> <!-- 제목 클릭 시 이동 -->
+                    <td th:text="${inquiry.member.memberName}"></td> <!-- 작성자 쓸 공간 -->
+                     <td th:text="${inquiry.inqState}"></td> <!-- 작성자 쓸 공간 -->
+                    <td th:text="${#temporals.format(inquiry.inqDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+  
+   </div>
+</div>
+   
+
+
+    <!-- 추가 스크립트 -->
+  
+    <script src="/js/jquery-3.7.1.min.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="/js/admin/inquiry/AnswerInquiryList.js"></script>
+    
+</body>
+</html>

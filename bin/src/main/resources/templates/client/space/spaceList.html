@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:insert="~{template/client/fragments/block :: config}"></th:block>
+    <meta name="theme-color" content="#712cf9">
+    <link href="/css/client/space/spaceList.css" rel="stylesheet">
+    <link href="/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <th:block th:insert="~{template/client/fragments/block :: header}"></th:block>
+
+    <div class="container my-4">
+        <div class="text-center mb-4">
+            <h2>공간 대여 리스트</h2>
+        </div>
+
+        <div class="row g-4" id="spaceList">
+            <!-- 타임리프를 사용해 서버에서 데이터를 직접 렌더링 -->
+            <th:block th:each="space : ${spaceList}">
+                <div class="col-md-6">
+                    <div class="card h-100" data-id="${space.spNo}">
+                        <a th:href="@{${space.spMainImage}}" class="item-light">
+                            <img th:src="@{${space.spMainImage}}" class="card-img-top" alt="space image">
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${space.spName}">Space Name</h5>
+                            <p class="card-text">
+                                <small class="text-muted" th:text="${space.spKeyword}">Keyword</small>
+                            </p>
+                            <p class="card-text" th:text="${space.spCapacity} + ' 명 수용'">Capacity</p>
+                            <p class="card-text" th:text="${#numbers.formatInteger(space.spHourPrice, 0)} + '원/시간'">Price</p>
+                            <a href="#" class="btn btn-primary detailBtn">자세히 보기</a>
+                        </div>
+                    </div>
+                </div>
+            </th:block>
+        </div>
+    </div>
+
+    <th:block th:insert="~{template/client/fragments/block :: footer}"></th:block>
+
+    <!-- 스크립트 블록 -->
+    <script src="/js/lightbox.min.js"></script>
+    <script src="/assets/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/client/space/spaceList.js"></script>
+</body>
+</html>

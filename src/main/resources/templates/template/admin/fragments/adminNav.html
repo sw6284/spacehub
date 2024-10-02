@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+	<th:block th:fragment="config">
+		<script src="/assets/js/color-modes.js"></script>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<title> SpaceHub - 관리자페이지</title>
+			
+		<link rel="shortcut icon" href="/images/icon.png" />
+		<link rel="apple-touch-icon" href="/images/icon.png" />
+			
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+		
+		<link href="/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+		
+		<link href="/css/admin/adminNav.css" rel="stylesheet">
+		<link type="text/css" rel="stylesheet" href="/css/client/common.css" />
+		
+		<!-- 버튼 css -->
+    	<link href="/css/client/button.css" rel="stylesheet">
+    	<script src="/js/jquery-3.7.1.min.js"></script>
+    	<script>
+	    	$(document).ready(function() {
+	        	$('#logoutBtn').on('click', function() {
+	            	$.ajax({
+	                	url: '/admin/logout',
+	                    type: 'POST',
+	                    success: function() {
+	                        window.location.href = '/admin';
+	                    },
+	                    error: function(xhr, status, error) {
+	                        console.error('Logout error:', status, error);
+	                    }
+	                });
+	            });
+	        });
+    	</script>
+	</th:block>
+	
+
+    <!-- 관리자 페이지 왼쪽 네비게이션 -->
+    <th:block th:fragment="admin-nav">
+    	<body>
+			<div class="nav-container">
+			    <nav class="sidebar">
+			        <h2>SpaceHub <br> 관리자페이지</h2>
+			        <ul>
+			            <li><a href="/admin/main">홈</a></li>
+			            <li><a href="/admin/myPage">관리자 마이페이지</a></li>
+			            <li><a href="/admin/space/spaceList">공간 관리</a></li>
+			            <li><a href="/space">리뷰 관리</a></li>
+			            <li><a href="#">문의 게시판</a></li>
+			            <li><a href="/admin/notice/noticeList">공지 게시판</a></li>
+			            <li class="divider"></li>
+			            <li><a href="/admin/reservationManager">예약 관리</a></li>
+						<li class="divider"></li>
+			            <li><a href="/admin/memberManage">회원 관리</a></li>
+			            <li><a href="/admin/adminManage">관리자 관리</a></li>
+			        </ul>
+			        
+			        <div>
+			        	<button class="btn-danger" id="logoutBtn">로그아웃</button>
+			        </div>
+			    </nav>
+			</div>
+
+        </body>
+    </th:block>
+
+
+
+</html>
+

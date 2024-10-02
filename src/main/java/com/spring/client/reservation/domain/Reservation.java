@@ -42,8 +42,11 @@ public class Reservation {
     @JoinColumn(name = "sp_no", nullable = false)
     private Space spNo;
 
-    @Column(name = "r_name", length = 20, nullable = false)
+    @Column(name = "r_name", length = 20, nullable = true)
     private String resName;
+    
+    @Column(name = "r_phone", length = 20, nullable = true)
+    private String resPhone;
 
     @Column(name = "r_date", nullable = false)
     private LocalDateTime resDate;

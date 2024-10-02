@@ -1,16 +1,23 @@
 package com.spring.client.reservation.service;
 
 import java.time.Instant;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ScheduledFuture;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.scheduling.TaskScheduler;
 import org.springframework.stereotype.Service;
 
 import com.spring.client.reservation.domain.Reservation;
 import com.spring.client.reservation.repository.ReservationRepository;
+import com.spring.common.vo.PageRequestDTO;
+import com.spring.common.vo.PageResponseDTO;
+import com.spring.common.vo.SearchRequestDTO;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,6 +38,20 @@ public class ReservationServiceImpl implements ReservationService {
         return resOptional.orElse(null);
     }
 
+    public PageResponseDTO<Reservation> getReservationList(PageRequestDTO pageRequestDTO) {
+        // Pageable 객체 생성 (0-based paging 사용을 위해 page - 1)
+        Pageable pageable = PageRequest.of(pageRequestDTO.getPage() - 1, pageRequestDTO.getSize());
+        
+        Page<Reservation> result = reservationRepository.findAll(pageable);  // JPA에서 기본 제공
+
+        // PageResponseDTO를 빌드하여 반환
+        return PageResponseDTO.<Reservation>withAll()
+            .dtoList(result.getContent())  // 페이지 데이터 리스트
+            .pageRequestDTO(pageRequestDTO)  // 요청된 페이지 정보
+            .totalCount(result.getTotalElements())  // 전체 데이터 수
+            .build();
+    }
+    
     @Override
     public Reservation reservationInsert(Reservation reservation) {
         // 예약을 먼저 저장
@@ -63,5 +84,49 @@ public class ReservationServiceImpl implements ReservationService {
             scheduledTasks.remove(resNo);
         }
     }
+
+	@Override
+	public List<Reservation> getByMemberNo(Long memberNo) {
+		List<Reservation> res = reservationRepository.reservationList(memberNo);
+		return res;
+	}
+	
+	 // 예약이 존재하는지 확인하는 메서드
+	@Override
+    public boolean isReservationExists(Long resNo) {
+        // 예약 번호로 예약이 존재하는지 확인
+        return reservationRepository.existsById(resNo);
+    }
+
+	@Override
+	public List<Reservation> reservationList() {
+		List<Reservation> res = reservationRepository.findAllByOrderByResStartTime();
+		return res;
+	}
+
+	@Override
+	public PageResponseDTO<Reservation> searchReservations(SearchRequestDTO searchRequestDTO, PageRequestDTO pageRequestDTO) {
+	    Pageable pageable = PageRequest.of(pageRequestDTO.getPage() - 1, pageRequestDTO.getSize());
+	    
+	    Page<Reservation> result;
+	    
+	    if (searchRequestDTO.getKeyWord() != null) {
+	        result = reservationRepository.findByResNameContaining(searchRequestDTO.getKeyWord(), pageable);
+	    } else if (searchRequestDTO.getDateSearch() != null) {
+	        result = reservationRepository.findByResStartTimeBetween(searchRequestDTO.getDateSearch(), searchRequestDTO.getDateSearch().plusDays(1), pageable);
+	    } else {
+	        result = reservationRepository.findAll(pageable);
+	    }
+
+	    return PageResponseDTO.<Reservation>withAll()
+	        .dtoList(result.getContent())
+	        .pageRequestDTO(pageRequestDTO)
+	        .totalCount(result.getTotalElements())
+	        .build();
+	}
+	
+	
 }
+	
+
 
